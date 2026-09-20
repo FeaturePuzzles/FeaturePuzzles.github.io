@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feature Puzzles &middot; Project page</title>
+<meta name="description" content="Feature Puzzles: single-image supervision for multi-view 3D-aware segmentation. Promptable multi-view segmentation and open-vocabulary 3D segmentation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-brand" href="#top">Feature&nbsp;Puzzles</a>
+  <div class="nav-links">
+    <a href="#abstract">Abstract</a>
+    <a href="#promptable">Promptable</a>
+    <a href="#openvocab">Open&#8209;vocabulary</a>
+    <a href="#bibtex">BibTeX</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="venue">Under review &middot; ICLR 2027</p>
+    <h1 class="title">Feature Puzzles</h1>
+    <p class="subtitle">Single-Image Supervision for Multi-View 3D-Aware Segmentation</p>
+    <p class="authors">Anonymous Authors</p>
+
+    <div class="links">
+      <a class="btn" href="#" data-placeholder>Paper</a>
+      <a class="btn" href="#" data-placeholder>arXiv</a>
+      <a class="btn" href="#" data-placeholder>Code</a>
+      <a class="btn" href="#bibtex">BibTeX</a>
+    </div>
+
+    <figure class="teaser" id="teaser">
+      <img id="teaser-cover" src="media/cover.jpg"
+           srcset="media/cover_sm.jpg 1200w, media/cover.jpg 2400w"
+           sizes="(max-width: 760px) 100vw, 1220px"
+           alt="Feature Puzzles: promptable multi-view segmentation, spatial tracking and open-vocabulary 3D segmentation">
+      <figcaption>
+        <b>What one single-image-supervised model does across three settings.</b>
+        Prompts given on one view propagated to every other view (A), a person and
+        the floor carried through a whole video (B), and open-vocabulary instances
+        fused in 3D at room and building scale (C).
+      </figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section class="prose" id="abstract">
+  <div class="wrap narrow">
+    <h2 class="section-title">Abstract</h2>
+    <p>
+      Humans naturally recognize the same objects consistently across different
+      viewpoints of a 3D scene. However, teaching models such multi-view-consistent
+      perception typically requires videos, calibrated multi-view captures, or
+      reconstructed 3D scenes, which are substantially more expensive and less
+      diverse than large-scale monocular-image data.
+    </p>
+    <p>
+      We introduce <b>Feature Puzzles</b>, a framework that equips a pretrained
+      multi-view representation with multi-view-consistent segmentation using only
+      <em>single-image annotation</em>. Feature Puzzles decomposes each training
+      image into a puzzle of overlapping crops and treats these crops as synthetic
+      views. Because every crop is tied to the parent image by a known transform,
+      labels and dense teacher features pulled back from the parent agree exactly
+      across crops, which yields cross-view training targets without any multi-view
+      labels. We attach lightweight task heads to the backbone, fuse its multi-layer
+      tokens, and adapt only its late blocks with low-rank adapters. The adapters
+      can be switched off at inference, so the original depth and camera outputs
+      are recovered.
+    </p>
+    <p>
+      We instantiate the framework for two tasks, both shown below:
+      <b>promptable multi-view segmentation</b>, which propagates prompts from any
+      subset of views to all views in a single forward pass, and
+      <b>open-vocabulary 3D segmentation</b>, which distills DINOv3 features into
+      multi-view-consistent dense features. The multi-view geometric prior comes
+      from the pretrained backbone; Feature Puzzles contributes the semantic
+      supervision. Trained on SA-1B alone, the resulting models remain
+      feed-forward, surpass per-scene optimization on NVOS, and remain competitive
+      with methods trained on in-domain multi-view data.
+    </p>
+  </div>
+</section>
+
+<!-- ── task sections, filled in from data/manifest.json ──────────────────── -->
+<section class="task" id="promptable" data-task="promptable"></section>
+<section class="task alt" id="openvocab" data-task="openvocab"></section>
+
+<section class="prose" id="bibtex">
+  <div class="wrap narrow">
+    <h2 class="section-title">BibTeX</h2>
+    <pre class="cite">@inproceedings{featurepuzzles2027,
+  title     = {Feature Puzzles: Single-Image Supervision
+               for Multi-View 3D-Aware Segmentation},
+  author    = {Anonymous Authors},
+  booktitle = {Under review at ICLR},
+  year      = {2027}
+}</pre>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap narrow">
+    <p>Project page for an anonymous submission. Every video on this page is a
+      raw inference result &mdash; nothing is hand-corrected, and no scene is
+      optimized.</p>
+    <p class="build" id="build-stamp"></p>
+  </div>
+</footer>
+
+<!-- reference-prompt lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption id="lb-cap"></figcaption>
+  </figure>
+</div>
+
+<script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,5276 @@
+{
+ "generated": "2026-09-20T15:51:34",
+ "tasks": [
+  {
+   "id": "promptable",
+   "title": "Promptable Multi-View Segmentation",
+   "lead": "Prompts given in any subset of views propagate to every view in one forward pass \u2014 no per-scene optimization, no tracking, and no pairwise matching between views.",
+   "groups": [
+    {
+     "id": "aivideo",
+     "label": "AI-generated video",
+     "note": "Generated indoor walkthroughs (Marble, Atlas, RTFM). These clips have no depth and no poses, so the geometry is VGGT-Omega's own reconstruction \u2014 the segmentation head runs on top of it unchanged.",
+     "dynamic": false,
+     "source": "AIVideo",
+     "scenes": [
+      {
+       "id": "atlas_living_room",
+       "name": "Living room",
+       "family": "Atlas",
+       "poster": "posters/promptable_aivideo_atlas_living_room.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/atlas_living_room/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/atlas_living_room/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/atlas_living_room/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/atlas_living_room/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/atlas_living_room/input.mp4",
+       "reference": "media/promptable/aivideo/atlas_living_room/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "atlas_spaceship_interior",
+       "name": "Spaceship interior",
+       "family": "Atlas",
+       "poster": "posters/promptable_aivideo_atlas_spaceship_interior.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/atlas_spaceship_interior/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/atlas_spaceship_interior/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/atlas_spaceship_interior/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/atlas_spaceship_interior/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/atlas_spaceship_interior/input.mp4",
+       "reference": "media/promptable/aivideo/atlas_spaceship_interior/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "atlas_stone_interior",
+       "name": "Stone interior",
+       "family": "Atlas",
+       "poster": "posters/promptable_aivideo_atlas_stone_interior.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/atlas_stone_interior/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/atlas_stone_interior/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/atlas_stone_interior/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/atlas_stone_interior/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/atlas_stone_interior/input.mp4",
+       "reference": "media/promptable/aivideo/atlas_stone_interior/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "atlas_supermarket",
+       "name": "Supermarket",
+       "family": "Atlas",
+       "poster": "posters/promptable_aivideo_atlas_supermarket.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/atlas_supermarket/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/atlas_supermarket/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/atlas_supermarket/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/atlas_supermarket/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/atlas_supermarket/input.mp4",
+       "reference": "media/promptable/aivideo/atlas_supermarket/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble11_banner_nomap",
+       "name": "Banner \u2014 no map",
+       "family": "Marble-11",
+       "poster": "posters/promptable_aivideo_marble11_banner_nomap.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble11_banner_nomap/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble11_banner_nomap/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble11_banner_nomap/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble11_banner_nomap/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble11_banner_nomap/input.mp4",
+       "reference": "media/promptable/aivideo/marble11_banner_nomap/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble11_hallway",
+       "name": "Hallway",
+       "family": "Marble-11",
+       "poster": "posters/promptable_aivideo_marble11_hallway.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble11_hallway/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble11_hallway/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble11_hallway/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble11_hallway/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble11_hallway/input.mp4",
+       "reference": "media/promptable/aivideo/marble11_hallway/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble11_medieval",
+       "name": "Medieval",
+       "family": "Marble-11",
+       "poster": "posters/promptable_aivideo_marble11_medieval.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble11_medieval/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble11_medieval/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble11_medieval/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble11_medieval/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble11_medieval/input.mp4",
+       "reference": "media/promptable/aivideo/marble11_medieval/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble11_redblue",
+       "name": "Red/blue",
+       "family": "Marble-11",
+       "poster": "posters/promptable_aivideo_marble11_redblue.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble11_redblue/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble11_redblue/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble11_redblue/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble11_redblue/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble11_redblue/input.mp4",
+       "reference": "media/promptable/aivideo/marble11_redblue/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble11_scifi",
+       "name": "Sci-fi",
+       "family": "Marble-11",
+       "poster": "posters/promptable_aivideo_marble11_scifi.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble11_scifi/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble11_scifi/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble11_scifi/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble11_scifi/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble11_scifi/input.mp4",
+       "reference": "media/promptable/aivideo/marble11_scifi/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_fantasy",
+       "name": "Bedroom \u2014 fantasy",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_fantasy.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_fantasy/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_japanese",
+       "name": "Bedroom \u2014 japanese",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_japanese.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_japanese/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_japanese/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_japanese/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_japanese/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_japanese/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_japanese/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_layout",
+       "name": "Bedroom \u2014 layout",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_layout.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_layout/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_layout/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_layout/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_layout/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_layout/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_layout/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_mediterranean",
+       "name": "Bedroom \u2014 mediterranean",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_mediterranean.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_mediterranean/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_scandinavian",
+       "name": "Bedroom \u2014 scandinavian",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_scandinavian.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_scandinavian/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_stone",
+       "name": "Bedroom \u2014 stone",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_stone.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_stone/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_stone/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_stone/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_stone/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_stone/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_stone/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_bedroom_tuscany",
+       "name": "Bedroom \u2014 tuscany",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_bedroom_tuscany.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_bedroom_tuscany/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_gallery_a_layout",
+       "name": "Gallery A \u2014 layout",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_gallery_a_layout.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_a_layout/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_a_layout/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_a_layout/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_a_layout/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_gallery_a_layout/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_gallery_a_layout/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 7,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_gallery_b_layout",
+       "name": "Gallery B \u2014 layout",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_gallery_b_layout.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_b_layout/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_b_layout/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_b_layout/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_b_layout/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_gallery_b_layout/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_gallery_b_layout/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 7,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_chisel_gallery_b_scene",
+       "name": "Gallery B \u2014 scene",
+       "family": "Marble \u00b7 Chisel",
+       "poster": "posters/promptable_aivideo_marble_chisel_gallery_b_scene.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_b_scene/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_b_scene/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_chisel_gallery_b_scene/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_chisel_gallery_b_scene/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_chisel_gallery_b_scene/input.mp4",
+       "reference": "media/promptable/aivideo/marble_chisel_gallery_b_scene/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_cabinets",
+       "name": "Kitchen \u2014 cabinets",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_cabinets.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_cabinets/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_cabinets/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_cabinets/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_cabinets/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_cabinets/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_cabinets/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_conversation",
+       "name": "Kitchen \u2014 conversation",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_conversation.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_conversation/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_conversation/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_conversation/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_conversation/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_conversation/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_conversation/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_counters",
+       "name": "Kitchen \u2014 counters",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_counters.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_counters/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_counters/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_counters/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_counters/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_counters/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_counters/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_floor",
+       "name": "Kitchen \u2014 floor",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_floor.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_floor/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_floor/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_floor/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_floor/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_floor/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_floor/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_orig",
+       "name": "Kitchen \u2014 orig",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_orig.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_orig/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_orig/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_orig/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_orig/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_orig/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_orig/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_kitchen_pit",
+       "name": "Kitchen \u2014 pit",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_kitchen_pit.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_pit/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_pit/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_kitchen_pit/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_kitchen_pit/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_kitchen_pit/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_kitchen_pit/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_tavern_post",
+       "name": "Tavern \u2014 post",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_tavern_post.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_tavern_post/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_tavern_post/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_tavern_post/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_tavern_post/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_tavern_post/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_tavern_post/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_edit_tavern_pre",
+       "name": "Tavern \u2014 pre",
+       "family": "Marble \u00b7 Edit",
+       "poster": "posters/promptable_aivideo_marble_edit_tavern_pre.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_edit_tavern_pre/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_tavern_pre/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_edit_tavern_pre/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_edit_tavern_pre/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_edit_tavern_pre/input.mp4",
+       "reference": "media/promptable/aivideo/marble_edit_tavern_pre/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_interior_post",
+       "name": "Interior \u2014 post",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_interior_post.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_interior_post/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_interior_post/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_interior_post/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_interior_post/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_interior_post/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_interior_post/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_interior_pre",
+       "name": "Interior \u2014 pre",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_interior_pre.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_interior_pre/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_interior_pre/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_interior_pre/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_interior_pre/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_interior_pre/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_interior_pre/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_library_post",
+       "name": "Library \u2014 post",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_library_post.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_library_post/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_library_post/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_library_post/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_library_post/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_library_post/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_library_post/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_library_pre",
+       "name": "Library \u2014 pre",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_library_pre.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_library_pre/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_library_pre/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_library_pre/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_library_pre/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_library_pre/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_library_pre/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_room_post",
+       "name": "Room \u2014 post",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_room_post.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_room_post/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_room_post/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_room_post/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_room_post/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_room_post/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_room_post/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_expand_room_pre",
+       "name": "Room \u2014 pre",
+       "family": "Marble \u00b7 Expand",
+       "poster": "posters/promptable_aivideo_marble_expand_room_pre.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_expand_room_pre/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_room_pre/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_expand_room_pre/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_expand_room_pre/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_expand_room_pre/input.mp4",
+       "reference": "media/promptable/aivideo/marble_expand_room_pre/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_i2w_living_room",
+       "name": "Living room",
+       "family": "Marble \u00b7 Image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_i2w_living_room.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_i2w_living_room/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_i2w_living_room/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_i2w_living_room/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_i2w_living_room/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_i2w_living_room/input.mp4",
+       "reference": "media/promptable/aivideo/marble_i2w_living_room/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_i2w_victorian_foyer",
+       "name": "Victorian foyer",
+       "family": "Marble \u00b7 Image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_i2w_victorian_foyer.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_i2w_victorian_foyer/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_i2w_victorian_foyer/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_i2w_victorian_foyer/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_i2w_victorian_foyer/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_i2w_victorian_foyer/input.mp4",
+       "reference": "media/promptable/aivideo/marble_i2w_victorian_foyer/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mesh_library_grey",
+       "name": "Library \u2014 grey",
+       "family": "Marble \u00b7 Mesh",
+       "poster": "posters/promptable_aivideo_marble_mesh_library_grey.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_grey/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_grey/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_grey/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_grey/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mesh_library_grey/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mesh_library_grey/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mesh_library_grey_lit",
+       "name": "Library grey \u2014 lit",
+       "family": "Marble \u00b7 Mesh",
+       "poster": "posters/promptable_aivideo_marble_mesh_library_grey_lit.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_grey_lit/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_grey_lit/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_grey_lit/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_grey_lit/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mesh_library_grey_lit/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mesh_library_grey_lit/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mesh_library_shaded",
+       "name": "Library \u2014 shaded",
+       "family": "Marble \u00b7 Mesh",
+       "poster": "posters/promptable_aivideo_marble_mesh_library_shaded.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_shaded/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_shaded/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_shaded/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_shaded/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mesh_library_shaded/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mesh_library_shaded/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mesh_library_splats",
+       "name": "Library \u2014 splats",
+       "family": "Marble \u00b7 Mesh",
+       "poster": "posters/promptable_aivideo_marble_mesh_library_splats.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_splats/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_splats/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mesh_library_splats/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mesh_library_splats/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mesh_library_splats/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mesh_library_splats/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mia2w_everest",
+       "name": "Everest",
+       "family": "Marble \u00b7 Image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_mia2w_everest.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mia2w_everest/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mia2w_everest/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mia2w_everest/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mia2w_everest/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mia2w_everest/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mia2w_everest/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mia2w_pingpong",
+       "name": "Ping-pong",
+       "family": "Marble \u00b7 Image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_mia2w_pingpong.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mia2w_pingpong/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mia2w_pingpong/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mia2w_pingpong/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mia2w_pingpong/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mia2w_pingpong/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mia2w_pingpong/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mim2w_blue_pink_room",
+       "name": "Blue pink room",
+       "family": "Marble \u00b7 Multi-image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_mim2w_blue_pink_room.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mim2w_blue_pink_room/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mim2w_blue_pink_room/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mim2w_blue_pink_room/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mim2w_blue_pink_room/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mim2w_blue_pink_room/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mim2w_blue_pink_room/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_mim2w_monkey_rainbow",
+       "name": "Monkey rainbow",
+       "family": "Marble \u00b7 Multi-image\u2192World",
+       "poster": "posters/promptable_aivideo_marble_mim2w_monkey_rainbow.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/input.mp4",
+       "reference": "media/promptable/aivideo/marble_mim2w_monkey_rainbow/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_stitched_haunted",
+       "name": "Haunted",
+       "family": "Marble \u00b7 Stitched",
+       "poster": "posters/promptable_aivideo_marble_stitched_haunted.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_stitched_haunted/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_haunted/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_stitched_haunted/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_haunted/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_stitched_haunted/input.mp4",
+       "reference": "media/promptable/aivideo/marble_stitched_haunted/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_stitched_house",
+       "name": "House",
+       "family": "Marble \u00b7 Stitched",
+       "poster": "posters/promptable_aivideo_marble_stitched_house.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_stitched_house/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_house/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_stitched_house/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_house/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_stitched_house/input.mp4",
+       "reference": "media/promptable/aivideo/marble_stitched_house/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_stitched_spaceship",
+       "name": "Spaceship",
+       "family": "Marble \u00b7 Stitched",
+       "poster": "posters/promptable_aivideo_marble_stitched_spaceship.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_stitched_spaceship/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_spaceship/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_stitched_spaceship/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_spaceship/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_stitched_spaceship/input.mp4",
+       "reference": "media/promptable/aivideo/marble_stitched_spaceship/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_stitched_train",
+       "name": "Train",
+       "family": "Marble \u00b7 Stitched",
+       "poster": "posters/promptable_aivideo_marble_stitched_train.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_stitched_train/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_train/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_stitched_train/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_stitched_train/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_stitched_train/input.mp4",
+       "reference": "media/promptable/aivideo/marble_stitched_train/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 3,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_t2w_anime_library",
+       "name": "Anime library",
+       "family": "Marble \u00b7 Text\u2192World",
+       "poster": "posters/promptable_aivideo_marble_t2w_anime_library.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_t2w_anime_library/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_anime_library/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_t2w_anime_library/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_anime_library/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_t2w_anime_library/input.mp4",
+       "reference": "media/promptable/aivideo/marble_t2w_anime_library/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_t2w_blue_diner",
+       "name": "Blue diner",
+       "family": "Marble \u00b7 Text\u2192World",
+       "poster": "posters/promptable_aivideo_marble_t2w_blue_diner.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_t2w_blue_diner/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_blue_diner/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_t2w_blue_diner/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_blue_diner/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_t2w_blue_diner/input.mp4",
+       "reference": "media/promptable/aivideo/marble_t2w_blue_diner/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "marble_t2w_hobbit_kitchen",
+       "name": "Hobbit kitchen",
+       "family": "Marble \u00b7 Text\u2192World",
+       "poster": "posters/promptable_aivideo_marble_t2w_hobbit_kitchen.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/input.mp4",
+       "reference": "media/promptable/aivideo/marble_t2w_hobbit_kitchen/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "rtfm_juggle_lobby",
+       "name": "Juggle lobby",
+       "family": "RTFM",
+       "poster": "posters/promptable_aivideo_rtfm_juggle_lobby.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/rtfm_juggle_lobby/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/rtfm_juggle_lobby/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/rtfm_juggle_lobby/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/rtfm_juggle_lobby/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/rtfm_juggle_lobby/input.mp4",
+       "reference": "media/promptable/aivideo/rtfm_juggle_lobby/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "rtfm_recon_cabinet",
+       "name": "Recon cabinet",
+       "family": "RTFM",
+       "poster": "posters/promptable_aivideo_rtfm_recon_cabinet.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/rtfm_recon_cabinet/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_cabinet/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/rtfm_recon_cabinet/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_cabinet/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/rtfm_recon_cabinet/input.mp4",
+       "reference": "media/promptable/aivideo/rtfm_recon_cabinet/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "rtfm_recon_entrance",
+       "name": "Recon entrance",
+       "family": "RTFM",
+       "poster": "posters/promptable_aivideo_rtfm_recon_entrance.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/rtfm_recon_entrance/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_entrance/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/rtfm_recon_entrance/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_entrance/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/rtfm_recon_entrance/input.mp4",
+       "reference": "media/promptable/aivideo/rtfm_recon_entrance/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "rtfm_recon_piano",
+       "name": "Recon piano",
+       "family": "RTFM",
+       "poster": "posters/promptable_aivideo_rtfm_recon_piano.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/rtfm_recon_piano/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_piano/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/rtfm_recon_piano/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_piano/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/rtfm_recon_piano/input.mp4",
+       "reference": "media/promptable/aivideo/rtfm_recon_piano/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "rtfm_recon_tv",
+       "name": "Recon TV",
+       "family": "RTFM",
+       "poster": "posters/promptable_aivideo_rtfm_recon_tv.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/aivideo/rtfm_recon_tv/bev_hl.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_tv/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/aivideo/rtfm_recon_tv/bev_seg.mp4",
+         "follow": "media/promptable/aivideo/rtfm_recon_tv/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/aivideo/rtfm_recon_tv/input.mp4",
+       "reference": "media/promptable/aivideo/rtfm_recon_tv/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      }
+     ]
+    },
+    {
+     "id": "scannet",
+     "label": "ScanNet",
+     "note": "Real RGB-D scans with sensor depth and poses. 100 views per scene, prompted once with SAM's ten largest disjoint masks on view 0.",
+     "dynamic": false,
+     "source": "AScannet",
+     "scenes": [
+      {
+       "id": "scene0000_01",
+       "name": "scene0000_01",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0000_01.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0000_01/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0000_01/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0000_01/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0000_01/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0000_01/input.mp4",
+       "reference": "media/promptable/scannet/scene0000_01/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0046_00",
+       "name": "scene0046_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0046_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0046_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0046_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0046_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0046_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0046_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0046_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0079_00",
+       "name": "scene0079_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0079_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0079_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0079_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0079_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0079_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0079_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0079_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0158_00",
+       "name": "scene0158_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0158_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0158_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0158_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0158_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0158_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0158_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0158_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0316_00",
+       "name": "scene0316_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0316_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0316_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0316_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0316_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0316_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0316_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0316_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 9,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0389_00",
+       "name": "scene0389_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0389_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0389_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0389_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0389_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0389_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0389_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0389_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0406_00",
+       "name": "scene0406_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0406_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0406_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0406_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0406_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0406_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0406_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0406_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0521_00",
+       "name": "scene0521_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0521_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0521_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0521_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0521_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0521_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0521_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0521_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0553_00",
+       "name": "scene0553_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0553_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0553_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0553_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0553_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0553_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0553_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0553_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0616_00",
+       "name": "scene0616_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0616_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0616_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0616_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0616_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0616_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0616_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0616_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "scene0653_00",
+       "name": "scene0653_00",
+       "family": "ScanNet",
+       "poster": "posters/promptable_scannet_scene0653_00.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannet/scene0653_00/bev_hl.mp4",
+         "follow": "media/promptable/scannet/scene0653_00/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannet/scene0653_00/bev_seg.mp4",
+         "follow": "media/promptable/scannet/scene0653_00/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannet/scene0653_00/input.mp4",
+       "reference": "media/promptable/scannet/scene0653_00/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      }
+     ]
+    },
+    {
+     "id": "scannetpp",
+     "label": "ScanNet++",
+     "note": "High-resolution DSLR scans with mesh-rendered depth.",
+     "dynamic": false,
+     "source": "AScannet++",
+     "scenes": [
+      {
+       "id": "00777c41d4",
+       "name": "00777c41d4",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_00777c41d4.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/00777c41d4/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/00777c41d4/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/00777c41d4/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/00777c41d4/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/00777c41d4/input.mp4",
+       "reference": "media/promptable/scannetpp/00777c41d4/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "00a231a370",
+       "name": "00a231a370",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_00a231a370.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/00a231a370/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/00a231a370/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/00a231a370/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/00a231a370/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/00a231a370/input.mp4",
+       "reference": "media/promptable/scannetpp/00a231a370/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 9,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "00dd871005",
+       "name": "00dd871005",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_00dd871005.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/00dd871005/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/00dd871005/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/00dd871005/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/00dd871005/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/00dd871005/input.mp4",
+       "reference": "media/promptable/scannetpp/00dd871005/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "01ce24e652",
+       "name": "01ce24e652",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_01ce24e652.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/01ce24e652/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/01ce24e652/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/01ce24e652/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/01ce24e652/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/01ce24e652/input.mp4",
+       "reference": "media/promptable/scannetpp/01ce24e652/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 8,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "020312de8d",
+       "name": "020312de8d",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_020312de8d.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/020312de8d/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/020312de8d/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/020312de8d/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/020312de8d/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/020312de8d/input.mp4",
+       "reference": "media/promptable/scannetpp/020312de8d/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "02455b3d20",
+       "name": "02455b3d20",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_02455b3d20.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/02455b3d20/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/02455b3d20/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/02455b3d20/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/02455b3d20/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/02455b3d20/input.mp4",
+       "reference": "media/promptable/scannetpp/02455b3d20/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "0271889ec0",
+       "name": "0271889ec0",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_0271889ec0.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/0271889ec0/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/0271889ec0/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/0271889ec0/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/0271889ec0/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/0271889ec0/input.mp4",
+       "reference": "media/promptable/scannetpp/0271889ec0/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "027cd6ea0f",
+       "name": "027cd6ea0f",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_027cd6ea0f.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/027cd6ea0f/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/027cd6ea0f/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/027cd6ea0f/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/027cd6ea0f/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/027cd6ea0f/input.mp4",
+       "reference": "media/promptable/scannetpp/027cd6ea0f/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "02a980c994",
+       "name": "02a980c994",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_02a980c994.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/02a980c994/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/02a980c994/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/02a980c994/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/02a980c994/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/02a980c994/input.mp4",
+       "reference": "media/promptable/scannetpp/02a980c994/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "02c2ddee2a",
+       "name": "02c2ddee2a",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_02c2ddee2a.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/02c2ddee2a/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/02c2ddee2a/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/02c2ddee2a/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/02c2ddee2a/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/02c2ddee2a/input.mp4",
+       "reference": "media/promptable/scannetpp/02c2ddee2a/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "02f25e5fee",
+       "name": "02f25e5fee",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_02f25e5fee.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/02f25e5fee/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/02f25e5fee/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/02f25e5fee/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/02f25e5fee/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/02f25e5fee/input.mp4",
+       "reference": "media/promptable/scannetpp/02f25e5fee/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "033d0b9343",
+       "name": "033d0b9343",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_033d0b9343.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/033d0b9343/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/033d0b9343/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/033d0b9343/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/033d0b9343/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/033d0b9343/input.mp4",
+       "reference": "media/promptable/scannetpp/033d0b9343/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "036bce3393",
+       "name": "036bce3393",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_036bce3393.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/036bce3393/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/036bce3393/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/036bce3393/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/036bce3393/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/036bce3393/input.mp4",
+       "reference": "media/promptable/scannetpp/036bce3393/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "0373d65cce",
+       "name": "0373d65cce",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_0373d65cce.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/0373d65cce/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/0373d65cce/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/0373d65cce/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/0373d65cce/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/0373d65cce/input.mp4",
+       "reference": "media/promptable/scannetpp/0373d65cce/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "03f7a0e617",
+       "name": "03f7a0e617",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_03f7a0e617.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/03f7a0e617/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/03f7a0e617/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/03f7a0e617/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/03f7a0e617/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/03f7a0e617/input.mp4",
+       "reference": "media/promptable/scannetpp/03f7a0e617/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "0452249a1e",
+       "name": "0452249a1e",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_0452249a1e.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/0452249a1e/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/0452249a1e/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/0452249a1e/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/0452249a1e/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/0452249a1e/input.mp4",
+       "reference": "media/promptable/scannetpp/0452249a1e/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 9,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "09c1414f1b",
+       "name": "09c1414f1b",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_09c1414f1b.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/09c1414f1b/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/09c1414f1b/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/09c1414f1b/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/09c1414f1b/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/09c1414f1b/input.mp4",
+       "reference": "media/promptable/scannetpp/09c1414f1b/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "9071e139d9",
+       "name": "9071e139d9",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_9071e139d9.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/9071e139d9/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/9071e139d9/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/9071e139d9/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/9071e139d9/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/9071e139d9/input.mp4",
+       "reference": "media/promptable/scannetpp/9071e139d9/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "a24f64f7fb",
+       "name": "a24f64f7fb",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_a24f64f7fb.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/a24f64f7fb/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/a24f64f7fb/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/a24f64f7fb/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/a24f64f7fb/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/a24f64f7fb/input.mp4",
+       "reference": "media/promptable/scannetpp/a24f64f7fb/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "c49a8c6cff",
+       "name": "c49a8c6cff",
+       "family": "ScanNet++",
+       "poster": "posters/promptable_scannetpp_c49a8c6cff.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/scannetpp/c49a8c6cff/bev_hl.mp4",
+         "follow": "media/promptable/scannetpp/c49a8c6cff/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/scannetpp/c49a8c6cff/bev_seg.mp4",
+         "follow": "media/promptable/scannetpp/c49a8c6cff/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/scannetpp/c49a8c6cff/input.mp4",
+       "reference": "media/promptable/scannetpp/c49a8c6cff/reference.jpg",
+       "dynamic": false,
+       "prompts": null,
+       "stats": {
+        "frames": 100,
+        "fps": 3.0,
+        "intro_seconds": 6.0,
+        "objects": 10,
+        "aspect": 1.7778
+       }
+      }
+     ]
+    },
+    {
+     "id": "dynamic",
+     "label": "Dynamic scene",
+     "note": "A person moves through the scene while a hand-held camera follows (EMDB clips from MeshMimic). Two text prompts on the first frame \u2014 \u201chuman\u201d and \u201cfloor\u201d \u2014 are propagated through every frame of the video. The floor accumulates into the reconstruction. In the bird's-eye view the human's past positions stay behind, one every 10 frames, dimmed, as its 3D track, with the current body in full colour; the follow view shows only the current body.",
+     "dynamic": true,
+     "source": "MeshMimic",
+     "scenes": [
+      {
+       "id": "EMDB_20",
+       "name": "EMDB 20",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_20.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_20/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_20/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_20/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_20/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_20/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_20/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 497,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_27",
+       "name": "EMDB 27",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_27.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_27/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_27/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_27/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_27/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_27/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_27/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 348,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_35",
+       "name": "EMDB 35",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_35.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_35/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_35/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_35/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_35/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_35/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_35/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 594,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_36",
+       "name": "EMDB 36",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_36.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_36/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_36/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_36/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_36/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_36/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_36/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 462,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_40",
+       "name": "EMDB 40",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_40.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_40/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_40/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_40/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_40/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_40/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_40/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 480,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_48",
+       "name": "EMDB 48",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_48.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_48/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_48/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_48/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_48/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_48/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_48/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 378,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      },
+      {
+       "id": "EMDB_58",
+       "name": "EMDB 58",
+       "family": "MeshMimic \u00b7 EMDB",
+       "poster": "posters/promptable_dynamic_EMDB_58.jpg",
+       "modes": {
+        "hl": {
+         "bev": "media/promptable/dynamic/EMDB_58/bev_hl.mp4",
+         "follow": "media/promptable/dynamic/EMDB_58/follow_hl.mp4"
+        },
+        "seg": {
+         "bev": "media/promptable/dynamic/EMDB_58/bev_seg.mp4",
+         "follow": "media/promptable/dynamic/EMDB_58/follow_seg.mp4"
+        }
+       },
+       "rgb": "media/promptable/dynamic/EMDB_58/input.mp4",
+       "reference": "media/promptable/dynamic/EMDB_58/reference.jpg",
+       "dynamic": true,
+       "prompts": [
+        {
+         "name": "human",
+         "color": "#ff5c38"
+        },
+        {
+         "name": "floor",
+         "color": "#30aaff"
+        }
+       ],
+       "stats": {
+        "frames": 595,
+        "fps": 30.0,
+        "intro_seconds": null,
+        "objects": 2,
+        "aspect": 1.7778
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "openvocab",
+   "title": "Open-Vocabulary 3D Segmentation",
+   "lead": "Open-world detections made on individual frames are carried across views by the same promptable head and fused into 3D instances, each confirmed the moment enough views agree on it.",
+   "groups": [
+    {
+     "id": "scannet",
+     "label": "ScanNet",
+     "note": "Five queries per scene, drawn deterministically from a twenty-word indoor vocabulary, over 120 frames with sensor depth and poses.",
+     "source": "scannet",
+     "scenes": [
+      {
+       "id": "scene0000_01",
+       "name": "scene0000_01",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0000_01.jpg",
+       "bev": "media/openvocab/scannet/scene0000_01/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0000_01/follow.mp4",
+       "input": "media/openvocab/scannet/scene0000_01/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 7
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 18
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 23
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 24
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 4
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 76,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0046_00",
+       "name": "scene0046_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0046_00.jpg",
+       "bev": "media/openvocab/scannet/scene0046_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0046_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0046_00/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 4
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 0
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 11
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 8
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 3
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 26,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0079_00",
+       "name": "scene0079_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0079_00.jpg",
+       "bev": "media/openvocab/scannet/scene0079_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0079_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0079_00/input.mp4",
+       "queries": [
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 5
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 4
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 34
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 0
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 2
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 45,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0158_00",
+       "name": "scene0158_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0158_00.jpg",
+       "bev": "media/openvocab/scannet/scene0158_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0158_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0158_00/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 7
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 6
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 7
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 11
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 4
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 35,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0316_00",
+       "name": "scene0316_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0316_00.jpg",
+       "bev": "media/openvocab/scannet/scene0316_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0316_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0316_00/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 3
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 2
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 6
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 0
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 11,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0389_00",
+       "name": "scene0389_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0389_00.jpg",
+       "bev": "media/openvocab/scannet/scene0389_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0389_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0389_00/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 7
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 3
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 15
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 7
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 1
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 33,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0406_00",
+       "name": "scene0406_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0406_00.jpg",
+       "bev": "media/openvocab/scannet/scene0406_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0406_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0406_00/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 3
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 3
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 6
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 0
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 12,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0521_00",
+       "name": "scene0521_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0521_00.jpg",
+       "bev": "media/openvocab/scannet/scene0521_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0521_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0521_00/input.mp4",
+       "queries": [
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 6
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 17
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 0
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 4
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 4
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 31,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0553_00",
+       "name": "scene0553_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0553_00.jpg",
+       "bev": "media/openvocab/scannet/scene0553_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0553_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0553_00/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 0
+        },
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 2
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 4
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 1
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 7,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0616_00",
+       "name": "scene0616_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0616_00.jpg",
+       "bev": "media/openvocab/scannet/scene0616_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0616_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0616_00/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 6
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 10
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 13
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 1
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 1
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 31,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "scene0653_00",
+       "name": "scene0653_00",
+       "family": "ScanNet",
+       "poster": "posters/openvocab_scannet_scene0653_00.jpg",
+       "bev": "media/openvocab/scannet/scene0653_00/bev.mp4",
+       "follow": "media/openvocab/scannet/scene0653_00/follow.mp4",
+       "input": "media/openvocab/scannet/scene0653_00/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 3
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 12
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 21
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 12
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 14
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 62,
+        "aspect": 1.3333
+       }
+      }
+     ]
+    },
+    {
+     "id": "scannetpp",
+     "label": "ScanNet++",
+     "note": "DSLR scans. The ceiling is clipped away, or the bird's-eye view would look at nothing but the ceiling.",
+     "source": "scannetpp",
+     "scenes": [
+      {
+       "id": "00777c41d4",
+       "name": "00777c41d4",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_00777c41d4.jpg",
+       "bev": "media/openvocab/scannetpp/00777c41d4/bev.mp4",
+       "follow": "media/openvocab/scannetpp/00777c41d4/follow.mp4",
+       "input": "media/openvocab/scannetpp/00777c41d4/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 20
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 14
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 17
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 4
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 6
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 61,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "00a231a370",
+       "name": "00a231a370",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_00a231a370.jpg",
+       "bev": "media/openvocab/scannetpp/00a231a370/bev.mp4",
+       "follow": "media/openvocab/scannetpp/00a231a370/follow.mp4",
+       "input": "media/openvocab/scannetpp/00a231a370/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 10
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 12
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 7
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 6
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 4
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 39,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "00dd871005",
+       "name": "00dd871005",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_00dd871005.jpg",
+       "bev": "media/openvocab/scannetpp/00dd871005/bev.mp4",
+       "follow": "media/openvocab/scannetpp/00dd871005/follow.mp4",
+       "input": "media/openvocab/scannetpp/00dd871005/input.mp4",
+       "queries": [
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 4
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 12
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 16
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 0
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 32,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "01ce24e652",
+       "name": "01ce24e652",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_01ce24e652.jpg",
+       "bev": "media/openvocab/scannetpp/01ce24e652/bev.mp4",
+       "follow": "media/openvocab/scannetpp/01ce24e652/follow.mp4",
+       "input": "media/openvocab/scannetpp/01ce24e652/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 2
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 4
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 4
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 3
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 3
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 16,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "020312de8d",
+       "name": "020312de8d",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_020312de8d.jpg",
+       "bev": "media/openvocab/scannetpp/020312de8d/bev.mp4",
+       "follow": "media/openvocab/scannetpp/020312de8d/follow.mp4",
+       "input": "media/openvocab/scannetpp/020312de8d/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 10
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 39
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 53
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 33
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 20
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 155,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "0271889ec0",
+       "name": "0271889ec0",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_0271889ec0.jpg",
+       "bev": "media/openvocab/scannetpp/0271889ec0/bev.mp4",
+       "follow": "media/openvocab/scannetpp/0271889ec0/follow.mp4",
+       "input": "media/openvocab/scannetpp/0271889ec0/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 9
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 4
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 10
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 10
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 2
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 35,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "027cd6ea0f",
+       "name": "027cd6ea0f",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_027cd6ea0f.jpg",
+       "bev": "media/openvocab/scannetpp/027cd6ea0f/bev.mp4",
+       "follow": "media/openvocab/scannetpp/027cd6ea0f/follow.mp4",
+       "input": "media/openvocab/scannetpp/027cd6ea0f/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 1
+        },
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 16
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 6
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 17
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 15
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 55,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "02c2ddee2a",
+       "name": "02c2ddee2a",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_02c2ddee2a.jpg",
+       "bev": "media/openvocab/scannetpp/02c2ddee2a/bev.mp4",
+       "follow": "media/openvocab/scannetpp/02c2ddee2a/follow.mp4",
+       "input": "media/openvocab/scannetpp/02c2ddee2a/input.mp4",
+       "queries": [
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 15
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 12
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 2
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 1
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 30,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "02f25e5fee",
+       "name": "02f25e5fee",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_02f25e5fee.jpg",
+       "bev": "media/openvocab/scannetpp/02f25e5fee/bev.mp4",
+       "follow": "media/openvocab/scannetpp/02f25e5fee/follow.mp4",
+       "input": "media/openvocab/scannetpp/02f25e5fee/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 1
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 4
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 15
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 5
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 1
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 26,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "033d0b9343",
+       "name": "033d0b9343",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_033d0b9343.jpg",
+       "bev": "media/openvocab/scannetpp/033d0b9343/bev.mp4",
+       "follow": "media/openvocab/scannetpp/033d0b9343/follow.mp4",
+       "input": "media/openvocab/scannetpp/033d0b9343/input.mp4",
+       "queries": [
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 3
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 14
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 9
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 0
+        },
+        {
+         "name": "refrigerator",
+         "color": "#78beff",
+         "n": 2
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 28,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "036bce3393",
+       "name": "036bce3393",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_036bce3393.jpg",
+       "bev": "media/openvocab/scannetpp/036bce3393/bev.mp4",
+       "follow": "media/openvocab/scannetpp/036bce3393/follow.mp4",
+       "input": "media/openvocab/scannetpp/036bce3393/input.mp4",
+       "queries": [
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 7
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 42
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 12
+        },
+        {
+         "name": "lamp",
+         "color": "#ecd646",
+         "n": 7
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 14
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 82,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "0373d65cce",
+       "name": "0373d65cce",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_0373d65cce.jpg",
+       "bev": "media/openvocab/scannetpp/0373d65cce/bev.mp4",
+       "follow": "media/openvocab/scannetpp/0373d65cce/follow.mp4",
+       "input": "media/openvocab/scannetpp/0373d65cce/input.mp4",
+       "queries": [
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 3
+        },
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 9
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 9
+        },
+        {
+         "name": "cabinet",
+         "color": "#3a7aea",
+         "n": 17
+        },
+        {
+         "name": "bookshelf",
+         "color": "#e8783c",
+         "n": 1
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 39,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "0452249a1e",
+       "name": "0452249a1e",
+       "family": "ScanNet++",
+       "poster": "posters/openvocab_scannetpp_0452249a1e.jpg",
+       "bev": "media/openvocab/scannetpp/0452249a1e/bev.mp4",
+       "follow": "media/openvocab/scannetpp/0452249a1e/follow.mp4",
+       "input": "media/openvocab/scannetpp/0452249a1e/input.mp4",
+       "queries": [
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 3
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 0
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 1
+        },
+        {
+         "name": "bed",
+         "color": "#be46c8",
+         "n": 9
+        },
+        {
+         "name": "tv",
+         "color": "#829628",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 13,
+        "aspect": 1.3333
+       }
+      }
+     ]
+    },
+    {
+     "id": "farm",
+     "label": "FARM-Scenes",
+     "note": "Large, sparse robot captures \u2014 a car museum, a warehouse, a construction site, a robotics building and an outdoor campus ramp, 1,200\u201315,000 m\u00b2 each. Indoor furniture words find almost nothing here, so every scene is queried with its own official FARM-Scenes label set (41\u201397 classes).",
+     "source": "farm",
+     "scenes": [
+      {
+       "id": "grandtour_2024-11-11_raw_lidar_s20",
+       "name": "grandtour_2024-11-11_raw_lidar_s20",
+       "family": "FARM-Scenes",
+       "poster": "posters/openvocab_farm_grandtour_2024-11-11_raw_lidar_s20.jpg",
+       "bev": "media/openvocab/farm/grandtour_2024-11-11_raw_lidar_s20/bev.mp4",
+       "follow": "media/openvocab/farm/grandtour_2024-11-11_raw_lidar_s20/follow.mp4",
+       "input": "media/openvocab/farm/grandtour_2024-11-11_raw_lidar_s20/input.mp4",
+       "queries": [
+        {
+         "name": "car",
+         "color": "#bc563f",
+         "n": 24
+        },
+        {
+         "name": "motorcycle",
+         "color": "#3a9adb",
+         "n": 1
+        },
+        {
+         "name": "sports car",
+         "color": "#5befe2",
+         "n": 0
+        },
+        {
+         "name": "information kiosk",
+         "color": "#23bcc3",
+         "n": 10
+        },
+        {
+         "name": "model car",
+         "color": "#2ec6b2",
+         "n": 0
+        },
+        {
+         "name": "door",
+         "color": "#4f23bf",
+         "n": 7
+        },
+        {
+         "name": "display stand",
+         "color": "#c03039",
+         "n": 9
+        },
+        {
+         "name": "suv",
+         "color": "#964bd2",
+         "n": 8
+        },
+        {
+         "name": "race car",
+         "color": "#5669cf",
+         "n": 7
+        },
+        {
+         "name": "classic car",
+         "color": "#c2702b",
+         "n": 4
+        },
+        {
+         "name": "sedan",
+         "color": "#baba4d",
+         "n": 0
+        },
+        {
+         "name": "information sign",
+         "color": "#3deb9b",
+         "n": 6
+        },
+        {
+         "name": "trash can",
+         "color": "#9678dc",
+         "n": 3
+        },
+        {
+         "name": "car seat",
+         "color": "#e1da4f",
+         "n": 2
+        },
+        {
+         "name": "motor scooter",
+         "color": "#64ef3c",
+         "n": 3
+        },
+        {
+         "name": "bicycle",
+         "color": "#79d922",
+         "n": 0
+        },
+        {
+         "name": "tv screen",
+         "color": "#451ebb",
+         "n": 4
+        },
+        {
+         "name": "convertible car",
+         "color": "#714cc3",
+         "n": 5
+        },
+        {
+         "name": "station wagon",
+         "color": "#b8a731",
+         "n": 6
+        },
+        {
+         "name": "flatbed cart",
+         "color": "#7fc03a",
+         "n": 1
+        },
+        {
+         "name": "information stand",
+         "color": "#46a1c7",
+         "n": 4
+        },
+        {
+         "name": "bench seat",
+         "color": "#e82790",
+         "n": 5
+        },
+        {
+         "name": "display sign",
+         "color": "#28d2ee",
+         "n": 3
+        },
+        {
+         "name": "car model",
+         "color": "#3394d5",
+         "n": 6
+        },
+        {
+         "name": "surveying tripod",
+         "color": "#3fa0d9",
+         "n": 0
+        },
+        {
+         "name": "tunnel exhibit",
+         "color": "#c12bbf",
+         "n": 12
+        },
+        {
+         "name": "car body",
+         "color": "#98e750",
+         "n": 10
+        },
+        {
+         "name": "display case",
+         "color": "#c0d148",
+         "n": 6
+        },
+        {
+         "name": "interactive kiosk",
+         "color": "#1f25c2",
+         "n": 3
+        },
+        {
+         "name": "mannequin",
+         "color": "#2c2ac2",
+         "n": 2
+        },
+        {
+         "name": "display screen",
+         "color": "#c89e3c",
+         "n": 8
+        },
+        {
+         "name": "exhibition wall",
+         "color": "#b33287",
+         "n": 41
+        },
+        {
+         "name": "elevator door",
+         "color": "#ed5296",
+         "n": 22
+        },
+        {
+         "name": "small vehicle",
+         "color": "#4754ea",
+         "n": 8
+        },
+        {
+         "name": "escalator",
+         "color": "#b5774f",
+         "n": 16
+        },
+        {
+         "name": "display model",
+         "color": "#c8414a",
+         "n": 0
+        },
+        {
+         "name": "laptop computer",
+         "color": "#bfc85a",
+         "n": 2
+        },
+        {
+         "name": "hard case",
+         "color": "#c8af3b",
+         "n": 9
+        },
+        {
+         "name": "bicycle sculpture",
+         "color": "#d18442",
+         "n": 5
+        },
+        {
+         "name": "cutaway car model",
+         "color": "#3fdcbf",
+         "n": 12
+        },
+        {
+         "name": "exit sign",
+         "color": "#3db892",
+         "n": 0
+        },
+        {
+         "name": "engine display",
+         "color": "#8fda30",
+         "n": 5
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 279,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "grandtour_2024-11-25_warehouse",
+       "name": "grandtour_2024-11-25_warehouse",
+       "family": "FARM-Scenes",
+       "poster": "posters/openvocab_farm_grandtour_2024-11-25_warehouse.jpg",
+       "bev": "media/openvocab/farm/grandtour_2024-11-25_warehouse/bev.mp4",
+       "follow": "media/openvocab/farm/grandtour_2024-11-25_warehouse/follow.mp4",
+       "input": "media/openvocab/farm/grandtour_2024-11-25_warehouse/input.mp4",
+       "queries": [
+        {
+         "name": "cardboard box",
+         "color": "#4727bc",
+         "n": 9
+        },
+        {
+         "name": "dumpster",
+         "color": "#3126ce",
+         "n": 1
+        },
+        {
+         "name": "storage rack",
+         "color": "#4ed577",
+         "n": 0
+        },
+        {
+         "name": "pallet jack",
+         "color": "#246edf",
+         "n": 6
+        },
+        {
+         "name": "plastic crate",
+         "color": "#26c05e",
+         "n": 2
+        },
+        {
+         "name": "door",
+         "color": "#4f23bf",
+         "n": 3
+        },
+        {
+         "name": "trash can",
+         "color": "#9678dc",
+         "n": 2
+        },
+        {
+         "name": "platform cart",
+         "color": "#c5c656",
+         "n": 5
+        },
+        {
+         "name": "forklift",
+         "color": "#63c14c",
+         "n": 2
+        },
+        {
+         "name": "trash bin",
+         "color": "#c46a45",
+         "n": 0
+        },
+        {
+         "name": "office chair",
+         "color": "#dacd5d",
+         "n": 1
+        },
+        {
+         "name": "wooden pallet",
+         "color": "#c04a75",
+         "n": 3
+        },
+        {
+         "name": "wooden crate",
+         "color": "#d94640",
+         "n": 3
+        },
+        {
+         "name": "plastic case",
+         "color": "#27cdc3",
+         "n": 5
+        },
+        {
+         "name": "elevator door",
+         "color": "#ed5296",
+         "n": 9
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 0
+        },
+        {
+         "name": "whiteboard",
+         "color": "#aae6f0",
+         "n": 2
+        },
+        {
+         "name": "garage door",
+         "color": "#c7d853",
+         "n": 8
+        },
+        {
+         "name": "rolling cart",
+         "color": "#ee2ada",
+         "n": 2
+        },
+        {
+         "name": "stack of crate",
+         "color": "#be3bdb",
+         "n": 2
+        },
+        {
+         "name": "pallet",
+         "color": "#c8c878",
+         "n": 5
+        },
+        {
+         "name": "flatbed trailer",
+         "color": "#4536da",
+         "n": 1
+        },
+        {
+         "name": "roller door",
+         "color": "#2ee853",
+         "n": 2
+        },
+        {
+         "name": "flight case",
+         "color": "#e847d8",
+         "n": 0
+        },
+        {
+         "name": "stack of pallet",
+         "color": "#c32374",
+         "n": 11
+        },
+        {
+         "name": "control panel",
+         "color": "#c47449",
+         "n": 1
+        },
+        {
+         "name": "surveying total station",
+         "color": "#7eb737",
+         "n": 7
+        },
+        {
+         "name": "light switch panel",
+         "color": "#7d4cee",
+         "n": 1
+        },
+        {
+         "name": "push broom",
+         "color": "#7ed851",
+         "n": 0
+        },
+        {
+         "name": "dustpan",
+         "color": "#a3bf2a",
+         "n": 2
+        },
+        {
+         "name": "storage cabinet",
+         "color": "#57f1b5",
+         "n": 13
+        },
+        {
+         "name": "weighing scale bowl",
+         "color": "#e27a42",
+         "n": 2
+        },
+        {
+         "name": "digital scale",
+         "color": "#5cee4f",
+         "n": 1
+        },
+        {
+         "name": "electronic device",
+         "color": "#8ac552",
+         "n": 0
+        },
+        {
+         "name": "plastic barrel",
+         "color": "#e03b87",
+         "n": 1
+        },
+        {
+         "name": "filing cabinet",
+         "color": "#9452dd",
+         "n": 1
+        },
+        {
+         "name": "black case",
+         "color": "#d78b55",
+         "n": 2
+        },
+        {
+         "name": "large bag",
+         "color": "#9adb34",
+         "n": 4
+        },
+        {
+         "name": "manual pallet jack",
+         "color": "#4bb4b0",
+         "n": 3
+        },
+        {
+         "name": "roll-up door",
+         "color": "#b3b34e",
+         "n": 0
+        },
+        {
+         "name": "strapping cart",
+         "color": "#4fe596",
+         "n": 1
+        },
+        {
+         "name": "strapping machine",
+         "color": "#d456a2",
+         "n": 0
+        },
+        {
+         "name": "electrical outlet",
+         "color": "#dd5a46",
+         "n": 0
+        },
+        {
+         "name": "bin lid",
+         "color": "#c7c334",
+         "n": 0
+        },
+        {
+         "name": "glass door",
+         "color": "#bf5496",
+         "n": 4
+        },
+        {
+         "name": "black container",
+         "color": "#f1ed52",
+         "n": 4
+        },
+        {
+         "name": "metal gate",
+         "color": "#c052e0",
+         "n": 4
+        },
+        {
+         "name": "locker",
+         "color": "#61e449",
+         "n": 5
+        },
+        {
+         "name": "plastic bin",
+         "color": "#68edaf",
+         "n": 7
+        },
+        {
+         "name": "tripod",
+         "color": "#3ddd5d",
+         "n": 0
+        },
+        {
+         "name": "computer monitor",
+         "color": "#7333ba",
+         "n": 0
+        },
+        {
+         "name": "black plastic crate",
+         "color": "#c14d3e",
+         "n": 0
+        },
+        {
+         "name": "tape dispenser",
+         "color": "#b6d055",
+         "n": 0
+        },
+        {
+         "name": "dolly",
+         "color": "#d9b539",
+         "n": 0
+        },
+        {
+         "name": "electrical panel",
+         "color": "#d835af",
+         "n": 1
+        },
+        {
+         "name": "plastic container",
+         "color": "#c451b9",
+         "n": 1
+        },
+        {
+         "name": "plastic jerrycan",
+         "color": "#aecf2f",
+         "n": 0
+        },
+        {
+         "name": "pallet wrapper",
+         "color": "#56cf58",
+         "n": 3
+        },
+        {
+         "name": "metal shelving unit",
+         "color": "#e84aa2",
+         "n": 11
+        },
+        {
+         "name": "cardboard stack",
+         "color": "#b941a0",
+         "n": 7
+        },
+        {
+         "name": "loaded pallet",
+         "color": "#ac3ae5",
+         "n": 10
+        },
+        {
+         "name": "fire extinguisher",
+         "color": "#c5426e",
+         "n": 2
+        },
+        {
+         "name": "box trailer",
+         "color": "#b71fa7",
+         "n": 7
+        },
+        {
+         "name": "baggage cart",
+         "color": "#2d42c9",
+         "n": 4
+        },
+        {
+         "name": "pallet stack",
+         "color": "#d451b4",
+         "n": 8
+        },
+        {
+         "name": "metal door",
+         "color": "#f14f89",
+         "n": 5
+        },
+        {
+         "name": "delivery scooter",
+         "color": "#3adcc7",
+         "n": 3
+        },
+        {
+         "name": "bulk bag",
+         "color": "#2e62c6",
+         "n": 6
+        },
+        {
+         "name": "christmas tree",
+         "color": "#aeb338",
+         "n": 0
+        },
+        {
+         "name": "rolling step ladder",
+         "color": "#a957c7",
+         "n": 2
+        },
+        {
+         "name": "wrapped pallet",
+         "color": "#2a60ef",
+         "n": 2
+        },
+        {
+         "name": "rolling ladder",
+         "color": "#ef364e",
+         "n": 1
+        },
+        {
+         "name": "first aid cabinet",
+         "color": "#42a4d7",
+         "n": 10
+        },
+        {
+         "name": "sink",
+         "color": "#d05a30",
+         "n": 0
+        },
+        {
+         "name": "bulletin board",
+         "color": "#4dacd9",
+         "n": 4
+        },
+        {
+         "name": "first aid kit",
+         "color": "#3429dc",
+         "n": 2
+        },
+        {
+         "name": "paper towel dispenser",
+         "color": "#36ed50",
+         "n": 2
+        },
+        {
+         "name": "rolling shelf cart",
+         "color": "#2de9da",
+         "n": 4
+        },
+        {
+         "name": "printer",
+         "color": "#26bbce",
+         "n": 0
+        },
+        {
+         "name": "tall cabinet",
+         "color": "#ae30c7",
+         "n": 13
+        },
+        {
+         "name": "mesh cart",
+         "color": "#68e9a5",
+         "n": 10
+        },
+        {
+         "name": "hose reel cart",
+         "color": "#a445c4",
+         "n": 0
+        },
+        {
+         "name": "storage bin rack",
+         "color": "#bc822d",
+         "n": 2
+        },
+        {
+         "name": "desk setup",
+         "color": "#c155d4",
+         "n": 8
+        },
+        {
+         "name": "hard case",
+         "color": "#c8af3b",
+         "n": 3
+        },
+        {
+         "name": "light fixture",
+         "color": "#5dcee6",
+         "n": 0
+        },
+        {
+         "name": "foam roll",
+         "color": "#e231a5",
+         "n": 0
+        },
+        {
+         "name": "shelf cart",
+         "color": "#da903f",
+         "n": 10
+        },
+        {
+         "name": "red plastic case",
+         "color": "#d668eb",
+         "n": 2
+        },
+        {
+         "name": "storage case",
+         "color": "#ea9955",
+         "n": 3
+        },
+        {
+         "name": "double door",
+         "color": "#35bdb3",
+         "n": 10
+        },
+        {
+         "name": "stacked black tray",
+         "color": "#d238b9",
+         "n": 5
+        },
+        {
+         "name": "work table",
+         "color": "#813fd2",
+         "n": 5
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 313,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "grandtour_2024-12-09_raw_lidar_s20",
+       "name": "grandtour_2024-12-09_raw_lidar_s20",
+       "family": "FARM-Scenes",
+       "poster": "posters/openvocab_farm_grandtour_2024-12-09_raw_lidar_s20.jpg",
+       "bev": "media/openvocab/farm/grandtour_2024-12-09_raw_lidar_s20/bev.mp4",
+       "follow": "media/openvocab/farm/grandtour_2024-12-09_raw_lidar_s20/follow.mp4",
+       "input": "media/openvocab/farm/grandtour_2024-12-09_raw_lidar_s20/input.mp4",
+       "queries": [
+        {
+         "name": "construction material",
+         "color": "#cd4d26",
+         "n": 6
+        },
+        {
+         "name": "pallet",
+         "color": "#c8c878",
+         "n": 6
+        },
+        {
+         "name": "gas cylinder",
+         "color": "#4d7dbe",
+         "n": 2
+        },
+        {
+         "name": "equipment trailer",
+         "color": "#e75fe9",
+         "n": 4
+        },
+        {
+         "name": "van",
+         "color": "#b3b54c",
+         "n": 10
+        },
+        {
+         "name": "portable toilet",
+         "color": "#6beb4b",
+         "n": 0
+        },
+        {
+         "name": "roofing membrane roll",
+         "color": "#26db63",
+         "n": 3
+        },
+        {
+         "name": "ladder",
+         "color": "#6edcc8",
+         "n": 2
+        },
+        {
+         "name": "site container",
+         "color": "#9759eb",
+         "n": 3
+        },
+        {
+         "name": "shipping container",
+         "color": "#39cb2b",
+         "n": 4
+        },
+        {
+         "name": "wooden crate",
+         "color": "#d94640",
+         "n": 4
+        },
+        {
+         "name": "wooden pallet",
+         "color": "#c04a75",
+         "n": 3
+        },
+        {
+         "name": "cardboard box",
+         "color": "#4727bc",
+         "n": 2
+        },
+        {
+         "name": "tarp",
+         "color": "#2be14d",
+         "n": 0
+        },
+        {
+         "name": "dumpster",
+         "color": "#3126ce",
+         "n": 1
+        },
+        {
+         "name": "trash bin",
+         "color": "#c46a45",
+         "n": 0
+        },
+        {
+         "name": "electrical control box",
+         "color": "#c05558",
+         "n": 1
+        },
+        {
+         "name": "car",
+         "color": "#bc563f",
+         "n": 0
+        },
+        {
+         "name": "blue tarp bag",
+         "color": "#76b238",
+         "n": 4
+        },
+        {
+         "name": "box trailer",
+         "color": "#b71fa7",
+         "n": 6
+        },
+        {
+         "name": "portable generator",
+         "color": "#8739b2",
+         "n": 2
+        },
+        {
+         "name": "laptop",
+         "color": "#93ed67",
+         "n": 0
+        },
+        {
+         "name": "battery",
+         "color": "#89e649",
+         "n": 0
+        },
+        {
+         "name": "equipment bag",
+         "color": "#c531a5",
+         "n": 0
+        },
+        {
+         "name": "construction pipe",
+         "color": "#42e386",
+         "n": 0
+        },
+        {
+         "name": "construction waste bin",
+         "color": "#d33b20",
+         "n": 1
+        },
+        {
+         "name": "dump truck",
+         "color": "#d84823",
+         "n": 0
+        },
+        {
+         "name": "truck cab",
+         "color": "#95e32c",
+         "n": 9
+        },
+        {
+         "name": "paint can",
+         "color": "#4cd69d",
+         "n": 0
+        },
+        {
+         "name": "chemical drum",
+         "color": "#eb6957",
+         "n": 4
+        },
+        {
+         "name": "formwork stack",
+         "color": "#3f2eb2",
+         "n": 5
+        },
+        {
+         "name": "concrete bucket",
+         "color": "#60c152",
+         "n": 3
+        },
+        {
+         "name": "wooden formwork",
+         "color": "#ee5864",
+         "n": 3
+        },
+        {
+         "name": "construction container",
+         "color": "#d02283",
+         "n": 2
+        },
+        {
+         "name": "debris chute",
+         "color": "#e35c5c",
+         "n": 1
+        },
+        {
+         "name": "crane fork",
+         "color": "#30c360",
+         "n": 1
+        },
+        {
+         "name": "construction workstation",
+         "color": "#e95cf2",
+         "n": 2
+        },
+        {
+         "name": "concrete formwork panel",
+         "color": "#b2478b",
+         "n": 2
+        },
+        {
+         "name": "rebar mesh stack",
+         "color": "#3db2b4",
+         "n": 4
+        },
+        {
+         "name": "scaffolding stack",
+         "color": "#e72ed4",
+         "n": 0
+        },
+        {
+         "name": "scaffolding frames",
+         "color": "#c17d4f",
+         "n": 0
+        },
+        {
+         "name": "cable bundle",
+         "color": "#d9ea27",
+         "n": 2
+        },
+        {
+         "name": "stacked construction panel",
+         "color": "#d3ca3c",
+         "n": 4
+        },
+        {
+         "name": "first aid box",
+         "color": "#1b89b3",
+         "n": 1
+        },
+        {
+         "name": "first aid kit",
+         "color": "#3429dc",
+         "n": 0
+        },
+        {
+         "name": "stone block",
+         "color": "#be4c1c",
+         "n": 0
+        },
+        {
+         "name": "coiled hose",
+         "color": "#e25bbd",
+         "n": 5
+        },
+        {
+         "name": "suv",
+         "color": "#964bd2",
+         "n": 4
+        },
+        {
+         "name": "surveying tripod",
+         "color": "#3fa0d9",
+         "n": 3
+        },
+        {
+         "name": "yellow rope",
+         "color": "#c3392d",
+         "n": 2
+        },
+        {
+         "name": "hose",
+         "color": "#c35be6",
+         "n": 0
+        },
+        {
+         "name": "cable coil",
+         "color": "#d941ac",
+         "n": 3
+        },
+        {
+         "name": "bucket",
+         "color": "#3a38d4",
+         "n": 1
+        },
+        {
+         "name": "construction hose",
+         "color": "#e6c957",
+         "n": 0
+        },
+        {
+         "name": "power cable",
+         "color": "#84c72e",
+         "n": 0
+        },
+        {
+         "name": "metal rod",
+         "color": "#318ccc",
+         "n": 3
+        },
+        {
+         "name": "wooden stairs",
+         "color": "#eb754c",
+         "n": 4
+        },
+        {
+         "name": "scaffolding staircase",
+         "color": "#5aafc9",
+         "n": 1
+        },
+        {
+         "name": "metal ladder",
+         "color": "#c3c23f",
+         "n": 1
+        },
+        {
+         "name": "crate",
+         "color": "#92f25e",
+         "n": 0
+        },
+        {
+         "name": "metal construction bridge",
+         "color": "#3de6a3",
+         "n": 5
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 139,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "odin1_SDH4and7_0413",
+       "name": "odin1_SDH4and7_0413",
+       "family": "FARM-Scenes",
+       "poster": "posters/openvocab_farm_odin1_SDH4and7_0413.jpg",
+       "bev": "media/openvocab/farm/odin1_SDH4and7_0413/bev.mp4",
+       "follow": "media/openvocab/farm/odin1_SDH4and7_0413/follow.mp4",
+       "input": "media/openvocab/farm/odin1_SDH4and7_0413/input.mp4",
+       "queries": [
+        {
+         "name": "door",
+         "color": "#4f23bf",
+         "n": 28
+        },
+        {
+         "name": "trash can",
+         "color": "#9678dc",
+         "n": 34
+        },
+        {
+         "name": "whiteboard",
+         "color": "#aae6f0",
+         "n": 9
+        },
+        {
+         "name": "room sign",
+         "color": "#4730cb",
+         "n": 6
+        },
+        {
+         "name": "sign",
+         "color": "#ce4e6c",
+         "n": 0
+        },
+        {
+         "name": "table",
+         "color": "#3ab05c",
+         "n": 27
+        },
+        {
+         "name": "filing cabinet",
+         "color": "#9452dd",
+         "n": 29
+        },
+        {
+         "name": "humanoid robot",
+         "color": "#ec826a",
+         "n": 17
+        },
+        {
+         "name": "fire extinguisher cabinet",
+         "color": "#7cb741",
+         "n": 4
+        },
+        {
+         "name": "computer monitor",
+         "color": "#7333ba",
+         "n": 12
+        },
+        {
+         "name": "exit sign",
+         "color": "#3db892",
+         "n": 8
+        },
+        {
+         "name": "printer",
+         "color": "#26bbce",
+         "n": 2
+        },
+        {
+         "name": "bicycle",
+         "color": "#79d922",
+         "n": 1
+        },
+        {
+         "name": "wall sign",
+         "color": "#5bd8a9",
+         "n": 43
+        },
+        {
+         "name": "office chair",
+         "color": "#dacd5d",
+         "n": 45
+        },
+        {
+         "name": "framed poster",
+         "color": "#7c36bb",
+         "n": 6
+        },
+        {
+         "name": "double door",
+         "color": "#35bdb3",
+         "n": 27
+        },
+        {
+         "name": "small table",
+         "color": "#4fdcb1",
+         "n": 17
+        },
+        {
+         "name": "ottoman",
+         "color": "#bc9c3b",
+         "n": 11
+        },
+        {
+         "name": "wall light",
+         "color": "#c42a4c",
+         "n": 71
+        },
+        {
+         "name": "water fountain",
+         "color": "#41bf3b",
+         "n": 23
+        },
+        {
+         "name": "vertical pipe",
+         "color": "#d433d1",
+         "n": 47
+        },
+        {
+         "name": "floor sign",
+         "color": "#5457c4",
+         "n": 12
+        },
+        {
+         "name": "gantry crane",
+         "color": "#e95648",
+         "n": 19
+        },
+        {
+         "name": "hard case",
+         "color": "#c8af3b",
+         "n": 20
+        },
+        {
+         "name": "robot dog",
+         "color": "#a43ac7",
+         "n": 8
+        },
+        {
+         "name": "elevator door",
+         "color": "#ed5296",
+         "n": 56
+        },
+        {
+         "name": "water bottle",
+         "color": "#dec858",
+         "n": 8
+        },
+        {
+         "name": "laptop computer",
+         "color": "#bfc85a",
+         "n": 19
+        },
+        {
+         "name": "file cabinet",
+         "color": "#895bdb",
+         "n": 18
+        },
+        {
+         "name": "window",
+         "color": "#49f299",
+         "n": 138
+        },
+        {
+         "name": "desk",
+         "color": "#00b0be",
+         "n": 39
+        },
+        {
+         "name": "door frame",
+         "color": "#cb5954",
+         "n": 55
+        },
+        {
+         "name": "tcip sign",
+         "color": "#5854d8",
+         "n": 9
+        },
+        {
+         "name": "scooter stem",
+         "color": "#2e5bce",
+         "n": 19
+        },
+        {
+         "name": "scooter",
+         "color": "#dd885f",
+         "n": 0
+        },
+        {
+         "name": "wall clock",
+         "color": "#bd525f",
+         "n": 28
+        },
+        {
+         "name": "air vent",
+         "color": "#9e47bc",
+         "n": 28
+        },
+        {
+         "name": "thermostat",
+         "color": "#50d06b",
+         "n": 14
+        },
+        {
+         "name": "flat screen tv",
+         "color": "#3a84d7",
+         "n": 15
+        },
+        {
+         "name": "conference table",
+         "color": "#b9b71d",
+         "n": 17
+        },
+        {
+         "name": "chair",
+         "color": "#f3b026",
+         "n": 51
+        },
+        {
+         "name": "fire alarm",
+         "color": "#438acb",
+         "n": 5
+        },
+        {
+         "name": "sectional sofa",
+         "color": "#45b556",
+         "n": 31
+        },
+        {
+         "name": "bicycle helmet",
+         "color": "#d1a138",
+         "n": 5
+        },
+        {
+         "name": "wooden door",
+         "color": "#375ec8",
+         "n": 36
+        },
+        {
+         "name": "fire extinguisher sign",
+         "color": "#5231d3",
+         "n": 5
+        },
+        {
+         "name": "ceiling light",
+         "color": "#b032ba",
+         "n": 108
+        },
+        {
+         "name": "door sign",
+         "color": "#5051cb",
+         "n": 23
+        },
+        {
+         "name": "folding cart",
+         "color": "#3cc795",
+         "n": 0
+        },
+        {
+         "name": "utility cart",
+         "color": "#d4ce56",
+         "n": 15
+        },
+        {
+         "name": "phone booth",
+         "color": "#ef2d56",
+         "n": 15
+        },
+        {
+         "name": "storage cabinet",
+         "color": "#57f1b5",
+         "n": 25
+        },
+        {
+         "name": "cardboard box",
+         "color": "#4727bc",
+         "n": 20
+        },
+        {
+         "name": "blue sofa",
+         "color": "#ec685c",
+         "n": 29
+        },
+        {
+         "name": "3d printer",
+         "color": "#a0cf34",
+         "n": 9
+        },
+        {
+         "name": "robot arm",
+         "color": "#6141db",
+         "n": 27
+        },
+        {
+         "name": "robot arm end-effector",
+         "color": "#2b27d9",
+         "n": 0
+        },
+        {
+         "name": "robotic arm",
+         "color": "#ea61b7",
+         "n": 0
+        },
+        {
+         "name": "laptop",
+         "color": "#93ed67",
+         "n": 5
+        },
+        {
+         "name": "sofa",
+         "color": "#e43e3e",
+         "n": 22
+        },
+        {
+         "name": "poster",
+         "color": "#6835c1",
+         "n": 12
+        },
+        {
+         "name": "robot component",
+         "color": "#6d35bf",
+         "n": 16
+        },
+        {
+         "name": "flight case",
+         "color": "#e847d8",
+         "n": 5
+        },
+        {
+         "name": "plastic bin",
+         "color": "#68edaf",
+         "n": 21
+        },
+        {
+         "name": "laser printer",
+         "color": "#34c1c7",
+         "n": 11
+        },
+        {
+         "name": "shoe box",
+         "color": "#38b0c8",
+         "n": 13
+        },
+        {
+         "name": "hand sanitizer dispenser",
+         "color": "#69efe5",
+         "n": 4
+        },
+        {
+         "name": "information poster",
+         "color": "#50c490",
+         "n": 19
+        },
+        {
+         "name": "bair sign",
+         "color": "#a8c028",
+         "n": 7
+        },
+        {
+         "name": "telephone receiver",
+         "color": "#40bd4e",
+         "n": 22
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 1550,
+        "aspect": 1.3333
+       }
+      },
+      {
+       "id": "odin1_huang_ramp_dilation_1",
+       "name": "odin1_huang_ramp_dilation_1",
+       "family": "FARM-Scenes",
+       "poster": "posters/openvocab_farm_odin1_huang_ramp_dilation_1.jpg",
+       "bev": "media/openvocab/farm/odin1_huang_ramp_dilation_1/bev.mp4",
+       "follow": "media/openvocab/farm/odin1_huang_ramp_dilation_1/follow.mp4",
+       "input": "media/openvocab/farm/odin1_huang_ramp_dilation_1/input.mp4",
+       "queries": [
+        {
+         "name": "bicycle",
+         "color": "#79d922",
+         "n": 2
+        },
+        {
+         "name": "manhole cover",
+         "color": "#94b222",
+         "n": 8
+        },
+        {
+         "name": "sedan",
+         "color": "#baba4d",
+         "n": 14
+        },
+        {
+         "name": "wooden pallet",
+         "color": "#c04a75",
+         "n": 15
+        },
+        {
+         "name": "lamppost",
+         "color": "#d95abe",
+         "n": 6
+        },
+        {
+         "name": "storage locker",
+         "color": "#b834d9",
+         "n": 10
+        },
+        {
+         "name": "bike repair station",
+         "color": "#46dfdd",
+         "n": 14
+        },
+        {
+         "name": "hand truck",
+         "color": "#53bbbd",
+         "n": 2
+        },
+        {
+         "name": "traffic cone",
+         "color": "#47ccc1",
+         "n": 0
+        },
+        {
+         "name": "wooden crate",
+         "color": "#d94640",
+         "n": 10
+        },
+        {
+         "name": "pickup truck",
+         "color": "#d6943b",
+         "n": 0
+        },
+        {
+         "name": "van",
+         "color": "#b3b54c",
+         "n": 4
+        },
+        {
+         "name": "panel van",
+         "color": "#e4862a",
+         "n": 6
+        },
+        {
+         "name": "suv",
+         "color": "#964bd2",
+         "n": 1
+        },
+        {
+         "name": "utility cart",
+         "color": "#d4ce56",
+         "n": 12
+        },
+        {
+         "name": "closed patio umbrella",
+         "color": "#f2eb4e",
+         "n": 5
+        },
+        {
+         "name": "wooden box",
+         "color": "#e59d5f",
+         "n": 14
+        },
+        {
+         "name": "workbench",
+         "color": "#ffaa5a",
+         "n": 5
+        },
+        {
+         "name": "glass door",
+         "color": "#bf5496",
+         "n": 15
+        },
+        {
+         "name": "plastic tarp",
+         "color": "#3fa8cb",
+         "n": 26
+        },
+        {
+         "name": "pipe",
+         "color": "#b4486d",
+         "n": 13
+        },
+        {
+         "name": "metal grate",
+         "color": "#48cdef",
+         "n": 5
+        },
+        {
+         "name": "bridge walkway",
+         "color": "#b3a74d",
+         "n": 17
+        },
+        {
+         "name": "lamp post",
+         "color": "#4142df",
+         "n": 6
+        },
+        {
+         "name": "picnic table",
+         "color": "#a8b336",
+         "n": 12
+        },
+        {
+         "name": "wooden bench",
+         "color": "#eb5978",
+         "n": 6
+        },
+        {
+         "name": "patio umbrella",
+         "color": "#79ba46",
+         "n": 4
+        },
+        {
+         "name": "glass enclosure",
+         "color": "#3bda43",
+         "n": 10
+        },
+        {
+         "name": "tree",
+         "color": "#60d949",
+         "n": 62
+        },
+        {
+         "name": "electric scooter",
+         "color": "#277ac9",
+         "n": 3
+        },
+        {
+         "name": "no entry sign",
+         "color": "#252ac5",
+         "n": 10
+        },
+        {
+         "name": "prohibition sign",
+         "color": "#e7679e",
+         "n": 0
+        },
+        {
+         "name": "bike locker",
+         "color": "#25d8e3",
+         "n": 12
+        },
+        {
+         "name": "concrete stairs",
+         "color": "#d14345",
+         "n": 34
+        },
+        {
+         "name": "restricted area sign",
+         "color": "#bd7650",
+         "n": 5
+        },
+        {
+         "name": "chainlink gate",
+         "color": "#7d3aef",
+         "n": 9
+        },
+        {
+         "name": "nfpa 704 diamond",
+         "color": "#ba1d33",
+         "n": 0
+        },
+        {
+         "name": "sign",
+         "color": "#ce4e6c",
+         "n": 1
+        },
+        {
+         "name": "parking sign",
+         "color": "#46ede6",
+         "n": 0
+        }
+       ],
+       "stats": {
+        "frames": 120,
+        "fps": 8,
+        "instances": 378,
+        "aspect": 1.3333
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
