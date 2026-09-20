@@ -1,0 +1,5 @@
+# build-only: a 77 MB static ffmpeg, not part of the published site
+tools/
+__pycache__/
+*.log
+*.part.mp4
