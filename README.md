@@ -167,3 +167,22 @@ they are written into the manifest; edit there and re-run the build.
 The four hero buttons (Paper, arXiv, Code, BibTeX) are placeholders marked
 `data-placeholder`, which is what renders the "· soon" suffix. Remove the
 attribute and set the `href` once each link exists.
+
+## Deploying
+
+The site is self-contained, so deploying it is pushing this directory:
+
+```bash
+git push -u origin main         # FeaturePuzzlesSubmission/FeaturePuzzlesSubmission
+```
+
+Then in the repository's **Settings → Pages**, set the source to branch `main`,
+folder `/ (root)`. `.nojekyll` is committed, so Jekyll does not touch the files.
+
+`tools/` (the 77 MB static ffmpeg) is in `.gitignore`: it builds the media but is
+not part of the published site. Everything else that is committed is served.
+
+The published size is **616 MB**, under the 1 GB GitHub Pages limit, at
+`--width 854 --crf 34`. Re-running `./build_site.py` without those flags rebuilds
+at the old 1280 px / crf 25 defaults and takes the site back over 1 GB, so pass
+them (or edit the defaults) whenever the media is rebuilt for the live site.
