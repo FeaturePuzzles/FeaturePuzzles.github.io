@@ -71,8 +71,9 @@ a { color: var(--accent); }
   letter-spacing: -.022em;
 }
 .subtitle {
-  margin: 16px auto 0; max-width: 720px;
-  font: 400 clamp(17px, 2.1vw, 22px)/1.42 var(--serif);
+  /* a step up, still well under .title (clamp 44-78px) */
+  margin: 16px auto 0; max-width: 800px;
+  font: 400 clamp(21px, 2.9vw, 31px)/1.36 var(--serif);
   color: var(--fg-dim); font-style: italic;
 }
 .authors { margin: 26px 0 0; font-size: 14px; color: var(--fg-dim); }
@@ -112,8 +113,8 @@ a { color: var(--accent); }
   border: 1px solid rgba(255, 255, 255, .13);
 }
 .teaser > figcaption {
-  margin: 16px auto 0; max-width: 830px; text-align: center;
-  font-size: 13.5px; line-height: 1.62; color: var(--fg-faint);
+  margin: 16px auto 0; max-width: min(1120px, 100%); text-align: center;
+  font-size: 14px; line-height: 1.7; color: var(--fg-faint);
 }
 .teaser > figcaption b { color: var(--fg-dim); font-weight: 500; }
 
@@ -123,7 +124,18 @@ a { color: var(--accent); }
   margin: 0 0 22px; font: 500 13px/1 var(--sans);
   letter-spacing: .15em; text-transform: uppercase; color: var(--fg-faint);
 }
-.prose p { margin: 0 0 18px; font-family: var(--serif); font-size: 17.5px; color: #d6dbe6; }
+.prose p { margin: 0 0 18px; font-family: var(--serif); font-size: 17.5px; line-height: 1.72; color: #d6dbe6; }
+
+/* The abstract sits just inside the figure width. The measure is not a round
+   number: it is tuned with tools/measure_abstract.py so the paragraph's last
+   line lands flush with the right edge on its own, which keeps the word spacing
+   identical on every line (justification would stretch it). Re-run that tool if
+   the abstract text or the font changes. */
+#abstract .wrap { width: min(1080px, calc(100% - 48px)); }
+#abstract p {
+  font-size: 18.5px; line-height: 1.86;
+  text-align: left; hyphens: none;
+}
 .prose p b { color: var(--fg); font-weight: 600; }
 .prose p em { color: var(--fg); font-style: italic; }
 
