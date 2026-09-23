@@ -18,7 +18,6 @@
     <a href="#abstract">Abstract</a>
     <a href="#promptable">Promptable</a>
     <a href="#openvocab">Open&#8209;vocabulary</a>
-    <a href="#bibtex">BibTeX</a>
   </div>
 </nav>
 
@@ -28,13 +27,6 @@
     <h1 class="title">Feature Puzzles</h1>
     <p class="subtitle">Single-Image Supervision for Multi-View 3D-Aware Segmentation</p>
     <p class="authors">Anonymous Authors</p>
-
-    <div class="links">
-      <a class="btn" href="#" data-placeholder>Paper</a>
-      <a class="btn" href="#" data-placeholder>arXiv</a>
-      <a class="btn" href="#" data-placeholder>Code</a>
-      <a class="btn" href="#bibtex">BibTeX</a>
-    </div>
 
     <figure class="teaser" id="teaser">
       <img id="teaser-cover" src="media/cover.jpg"
@@ -54,59 +46,15 @@
 <main>
 
 <section class="prose" id="abstract">
-  <div class="wrap narrow">
+  <div class="wrap">
     <h2 class="section-title">Abstract</h2>
-    <p>
-      Humans naturally recognize the same objects consistently across different
-      viewpoints of a 3D scene. However, teaching models such multi-view-consistent
-      perception typically requires videos, calibrated multi-view captures, or
-      reconstructed 3D scenes, which are substantially more expensive and less
-      diverse than large-scale monocular-image data.
-    </p>
-    <p>
-      We introduce <b>Feature Puzzles</b>, a framework that equips a pretrained
-      multi-view representation with multi-view-consistent segmentation using only
-      <em>single-image annotation</em>. Feature Puzzles decomposes each training
-      image into a puzzle of overlapping crops and treats these crops as synthetic
-      views. Because every crop is tied to the parent image by a known transform,
-      labels and dense teacher features pulled back from the parent agree exactly
-      across crops, which yields cross-view training targets without any multi-view
-      labels. We attach lightweight task heads to the backbone, fuse its multi-layer
-      tokens, and adapt only its late blocks with low-rank adapters. The adapters
-      can be switched off at inference, so the original depth and camera outputs
-      are recovered.
-    </p>
-    <p>
-      We instantiate the framework for two tasks, both shown below:
-      <b>promptable multi-view segmentation</b>, which propagates prompts from any
-      subset of views to all views in a single forward pass, and
-      <b>open-vocabulary 3D segmentation</b>, which distills DINOv3 features into
-      multi-view-consistent dense features. The multi-view geometric prior comes
-      from the pretrained backbone; Feature Puzzles contributes the semantic
-      supervision. Trained on SA-1B alone, the resulting models remain
-      feed-forward, surpass per-scene optimization on NVOS, and remain competitive
-      with methods trained on in-domain multi-view data.
-    </p>
+    <p>Humans recognize the same objects across viewpoints of a 3D scene, yet teaching models this multi-view-consistent perception typically requires videos, calibrated multi-view captures, or reconstructed 3D scenes&mdash;far more expensive and less diverse than large-scale monocular data. We introduce <b>Feature Puzzles</b>, a framework that adds multi-view-consistent segmentation to a pretrained multi-view representation using only single-image semantic supervision. Each image is decomposed into overlapping crops treated as synthetic views; since every crop is tied to the parent by a known transform, labels and dense teacher features pulled from the parent agree across overlapping crops, yielding cross-view consistent labels. We attach lightweight task heads that fuse the backbone&rsquo;s multi-layer tokens and adapt only its late blocks with low-rank adapters, which switch off at inference to recover the original depth and camera outputs. The pretrained backbone supplies the multi-view geometric prior; Feature Puzzles supplies only task-specific semantic supervision from single-image labels, with no task-specific multi-view or video annotations. We instantiate the framework for promptable multi-view segmentation&mdash;prompts from one or more views predict masks jointly across all views in a single forward pass&mdash;and for open-vocabulary 3D segmentation, which distills single-image DINOv3 features into multi-view-consistent dense features. Under this single-image supervision, our feed-forward model attains the best mIoU on NVOS, stays competitive on SPIn-NeRF and ScanNet++ despite in-domain multi-view baselines, and transfers zero-shot to open-vocabulary 3D segmentation.</p>
   </div>
 </section>
 
 <!-- ── task sections, filled in from data/manifest.json ──────────────────── -->
 <section class="task" id="promptable" data-task="promptable"></section>
 <section class="task alt" id="openvocab" data-task="openvocab"></section>
-
-<section class="prose" id="bibtex">
-  <div class="wrap narrow">
-    <h2 class="section-title">BibTeX</h2>
-    <pre class="cite">@inproceedings{featurepuzzles2027,
-  title     = {Feature Puzzles: Single-Image Supervision
-               for Multi-View 3D-Aware Segmentation},
-  author    = {Anonymous Authors},
-  booktitle = {Under review at ICLR},
-  year      = {2027}
-}</pre>
-  </div>
-</section>
-
 </main>
 
 <footer class="foot">
