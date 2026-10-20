@@ -164,16 +164,27 @@ The per-task headline and one-line lead live in `build_site.py` (in `main()`),
 and the per-dataset notes in `PROMPTABLE_GROUPS` / `OPENVOCAB_GROUPS`, because
 they are written into the manifest; edit there and re-run the build.
 
-The four hero buttons (Paper, arXiv, Code, BibTeX) are placeholders marked
-`data-placeholder`, which is what renders the "· soon" suffix. Remove the
-attribute and set the `href` once each link exists.
+The hero buttons link to the OpenReview page, the video and the BibTeX block.
+Add arXiv or code buttons in `index.html` once those links exist.
+
+## Video, abstract and method
+
+- **Video** (`media/promo/`) is rendered by `promo/make_promo.py`: it walks
+  through the paper's Fig. 2 (Feature Puzzles) and Fig. 3 (network) step by step,
+  then plays promptable and open-vocabulary results from `media/`. Run it with
+  `FFMPEG=<path to ffmpeg> python promo/make_promo.py . <paper>/figures <out>`.
+  It uses macOS system fonts (New York, Avenir Next).
+- **Method** diagrams are inline SVG in `index.html`. Their thumbnails in
+  `media/method/` are cut from the paper figures by `promo/crop_method_figs.py`;
+  `fig_puzzles.jpg` and `fig_network.jpg` are the full figures for the
+  "View paper figure" buttons.
 
 ## Deploying
 
 The site is self-contained, so deploying it is pushing this directory:
 
 ```bash
-git push -u origin main         # FeaturePuzzlesSubmission/FeaturePuzzlesSubmission
+git push -u origin main         # FeaturePuzzles/FeaturePuzzles.github.io
 ```
 
 Then in the repository's **Settings → Pages**, set the source to branch `main`,
@@ -182,7 +193,7 @@ folder `/ (root)`. `.nojekyll` is committed, so Jekyll does not touch the files.
 `tools/` (the 77 MB static ffmpeg) is in `.gitignore`: it builds the media but is
 not part of the published site. Everything else that is committed is served.
 
-The published size is **616 MB**, under the 1 GB GitHub Pages limit, at
+The published size is about **660 MB** (616 MB of results plus the 43 MB video), under the 1 GB GitHub Pages limit, at
 `--width 854 --crf 34`. Re-running `./build_site.py` without those flags rebuilds
 at the old 1280 px / crf 25 defaults and takes the site back over 1 GB, so pass
 them (or edit the defaults) whenever the media is rebuilt for the live site.
