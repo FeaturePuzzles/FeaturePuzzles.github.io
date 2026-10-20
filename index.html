@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Feature Puzzles &middot; Project page</title>
-<meta name="description" content="Feature Puzzles: single-image supervision for multi-view 3D-aware segmentation. Promptable multi-view segmentation and open-vocabulary 3D segmentation.">
+<title>Feature Puzzles &middot; ICLR 2027</title>
+<meta name="description" content="Feature Puzzles: single-image supervision for multi-view 3D-aware segmentation (ICLR 2027). Promptable multi-view segmentation and open-vocabulary 3D segmentation.">
+<meta property="og:title" content="Feature Puzzles: Single-Image Supervision for Multi-View 3D-Aware Segmentation">
+<meta property="og:description" content="Multi-view-consistent segmentation learned from single images. ICLR 2027.">
+<meta property="og:image" content="https://featurepuzzles.github.io/media/cover_sm.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,17 +19,36 @@
   <a class="nav-brand" href="#top">Feature&nbsp;Puzzles</a>
   <div class="nav-links">
     <a href="#abstract">Abstract</a>
+    <a href="#video">Video</a>
+    <a href="#method">Method</a>
     <a href="#promptable">Promptable</a>
     <a href="#openvocab">Open&#8209;vocabulary</a>
+    <a href="#bibtex">BibTeX</a>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap">
-    <p class="venue">Under review &middot; ICLR 2027</p>
+    <p class="venue">ICLR 2027</p>
     <h1 class="title">Feature Puzzles</h1>
     <p class="subtitle">Single-Image Supervision for Multi-View 3D-Aware Segmentation</p>
-    <p class="authors">Anonymous Authors</p>
+    <p class="authors">
+      <span>Jiahao Ma<sup>1</sup></span>
+      <span>Qiang Zhang<sup>2</sup></span>
+      <span>Miaomiao Liu<sup>1</sup></span>
+      <span>David Ahmedt-Aristizabal<sup>3</sup></span>
+      <span>Chuong Nguyen<sup>3</sup></span>
+    </p>
+    <p class="affils">
+      <span><sup>1</sup>Australian National University</span>
+      <span><sup>2</sup>University of Science and Technology of China</span>
+      <span><sup>3</sup>CSIRO</span>
+    </p>
+    <div class="links">
+      <a class="btn" href="https://openreview.net/forum?id=C9iJlwJc0W">Paper</a>
+      <a class="btn" href="#video">Video</a>
+      <a class="btn" href="#bibtex">BibTeX</a>
+    </div>
 
     <figure class="teaser" id="teaser">
       <img id="teaser-cover" src="media/cover.jpg"
@@ -48,20 +70,241 @@
 <section class="prose" id="abstract">
   <div class="wrap">
     <h2 class="section-title">Abstract</h2>
-    <p>Humans recognize the same objects across viewpoints of a 3D scene, yet teaching models this multi-view-consistent perception typically requires videos, calibrated multi-view captures, or reconstructed 3D scenes&mdash;far more expensive and less diverse than large-scale monocular data. We introduce <b>Feature Puzzles</b>, a framework that adds multi-view-consistent segmentation to a pretrained multi-view representation using only single-image semantic supervision. Each image is decomposed into overlapping crops treated as synthetic views; since every crop is tied to the parent by a known transform, labels and dense teacher features pulled from the parent agree across overlapping crops, yielding cross-view consistent labels. We attach lightweight task heads that fuse the backbone&rsquo;s multi-layer tokens and adapt only its late blocks with low-rank adapters, which switch off at inference to recover the original depth and camera outputs. The pretrained backbone supplies the multi-view geometric prior; Feature Puzzles supplies only task-specific semantic supervision from single-image labels, with no task-specific multi-view or video annotations. We instantiate the framework for promptable multi-view segmentation&mdash;prompts from one or more views predict masks jointly across all views in a single forward pass&mdash;and for open-vocabulary 3D segmentation, which distills single-image DINOv3 features into multi-view-consistent dense features. Under this single-image supervision, our feed-forward model attains the best mIoU on NVOS, stays competitive on SPIn-NeRF and ScanNet++ despite in-domain multi-view baselines, and transfers zero-shot to open-vocabulary 3D segmentation.</p>
+    <div class="abstract-box">
+      <p>Humans can easily recognize the same objects across different viewpoints of a 3D scene, whereas teaching models such multi-view-consistent perception typically requires videos or calibrated multi-view captures, which are considerably more expensive and less diverse than large-scale monocular data. In this paper, we introduce <b>Feature Puzzles</b>, a novel framework for learning multi-view-consistent segmentation using only single-image semantic segmentation supervision. Specifically, we propose a simple yet effective pipeline that constructs multi-view-consistent segmentation pseudo-labels through image cropping and geometric transformations. We further introduce a lightweight, plug-and-play network that leverages the multi-view-consistent image features learned by existing pretrained 3D foundation models and the generated pseudo-labels to perform multi-view-consistent segmentation. Importantly, our flexible framework supports various types of prompts provided from one or multiple views and can be readily extended to open-vocabulary 3D segmentation. Under this single-image supervision, our feed-forward model achieves the best mIoU on NVOS, remains competitive on SPIn-NeRF and ScanNet++ against baselines using per-scene optimization or in-domain multi-view training, and demonstrates zero-shot transfer to open-vocabulary 3D segmentation.</p>
+      <ul class="highlights">
+        <li><span class="tick" aria-hidden="true"></span><span><b>Multi-view supervision from one image.</b> Overlapping crops of a single image become synthetic views. Each is tied to the parent by a known transform, so their labels agree on every overlap by construction, with no video and no multi-view annotation.</span></li>
+        <li><span class="tick" aria-hidden="true"></span><span><b>Plug-and-play on a 3D foundation model.</b> Lightweight decoders sit on a pretrained VGGT-Omega backbone. Its low-rank adapters switch off at inference, so the original depth and camera outputs are kept.</span></li>
+        <li><span class="tick" aria-hidden="true"></span><span><b>One model, many prompts.</b> Mask, point or box prompts from one or more views return masks on every view in a single forward pass, and the same features extend to open-vocabulary 3D segmentation.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="prose" id="video">
+  <div class="wrap">
+    <h2 class="section-title">Video</h2>
+    <div class="promo">
+      <video controls playsinline preload="metadata" poster="media/promo/poster.jpg">
+        <source src="media/promo/feature_puzzles_promo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="prose method" id="method">
+  <div class="wrap">
+    <h2 class="section-title">Method</h2>
+
+    <!-- ── part 1: Feature Puzzles (paper Fig. 2) ─────────────────────────── -->
+    <div class="method-part">
+      <div class="method-head">
+        <span class="method-num">1</span>
+        <div>
+          <h3>Feature Puzzles: multi-view supervision from a single image</h3>
+          <p>A parent image is cut into overlapping crops, and every crop is treated as a view. Labels are computed once on the parent and pulled back into each view through the same map that made the crop.</p>
+        </div>
+      </div>
+      <div class="fig-wrap">
+        <svg class="fig-method" viewBox="0 0 1400 640" role="img" aria-labelledby="fp-title">
+          <title id="fp-title">Feature Puzzles: one parent image, cropped into views whose masks and features are pulled back from the parent</title>
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#93b6ff" stroke-width="1.6"/></marker>
+            <clipPath id="rr" clipPathUnits="objectBoundingBox"><rect width="1" height="1" rx=".05" ry=".05"/></clipPath>
+          </defs>
+          <rect class="panel" x="10" y="10" width="1380" height="620" rx="14"/>
+          <text class="ptitle" x="34" y="46">FEATURE PUZZLES  &#183;  ONE IMAGE, MANY CONSISTENT VIEWS</text>
+
+          <!-- parent + its labels -->
+          <g class="frame"><image href="media/method/parent_crops.jpg" x="40" y="76" width="300" height="227" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr)"/><rect x="40" y="76" width="300" height="227" rx="8"/></g>
+          <text class="lbl" x="190" y="332">Parent image</text>
+          <text class="sub" x="190" y="354">one RGB(-D) image, crops sampled on it</text>
+          <text class="clbl" x="40" y="404">labelled once, on the parent</text>
+          <g class="frame"><image href="media/method/sam.jpg" x="40" y="418" width="144" height="109" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr)"/><rect x="40" y="418" width="144" height="109" rx="6"/></g>
+          <g class="frame"><image href="media/method/dino.jpg" x="196" y="418" width="144" height="109" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr)"/><rect x="196" y="418" width="144" height="109" rx="6"/></g>
+          <text class="sub" x="112" y="552">SAM masks</text>
+          <text class="sub" x="268" y="552">DINO features</text>
+
+          <!-- crop & warp, optional 3D, pull back -->
+          <path class="fl" d="M340 187H380" marker-end="url(#ah)"/>
+          <rect class="blk gold" x="384" y="120" width="176" height="134" rx="16"/>
+          <text class="blbl hi" x="472" y="176">Crop &amp; warp</text>
+          <text class="sub" x="472" y="204">known map &#960;<tspan baseline-shift="sub" font-size="70%">n</tspan></text>
+          <text class="sub" x="472" y="226">no pose estimation</text>
+          <path class="fl" d="M472 254V278" marker-end="url(#ah)"/>
+          <g class="frame dash"><image href="media/method/aug3d.jpg" x="392" y="284" width="160" height="133" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr)"/><rect x="392" y="284" width="160" height="133" rx="6"/></g>
+          <text class="sub" x="472" y="440">optional: depth + 6-DoF</text>
+          <text class="sub" x="472" y="460">3D augmentation</text>
+          <path class="fl" d="M340 472C362 472 362 536 380 536" marker-end="url(#ah)"/>
+          <rect class="blk pink" x="384" y="486" width="176" height="100" rx="16"/>
+          <text class="blbl pk" x="472" y="530">Pull back</text>
+          <text class="sub" x="472" y="558">&#8467; &#8728; &#960;<tspan baseline-shift="sub" font-size="70%">n</tspan> into every view</text>
+
+          <!-- views and their targets -->
+          <text class="rlbl" x="700" y="88">VIEWS  x<tspan baseline-shift="sub" font-size="75%">1</tspan> &#8230; x<tspan baseline-shift="sub" font-size="75%">N</tspan></text>
+          <text class="rlbl" x="700" y="252">MASKS  &#183;  instance m is the same object in every view</text>
+          <text class="rlbl" x="700" y="416">FEATURES  &#183;  DINO targets from the parent</text>
+          <g class="frame">
+            <image href="media/method/tile_rgb_1.jpg" x="700" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="700" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_rgb_2.jpg" x="812" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="812" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_rgb_3.jpg" x="924" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="924" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_rgb_4.jpg" x="1036" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="1036" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_rgb_6.jpg" x="1148" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="1148" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_rgb_7.jpg" x="1260" y="104" width="104" height="104" clip-path="url(#rr)"/><rect x="1260" y="104" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_1.jpg" x="700" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="700" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_2.jpg" x="812" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="812" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_3.jpg" x="924" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="924" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_4.jpg" x="1036" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="1036" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_6.jpg" x="1148" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="1148" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_mask_7.jpg" x="1260" y="268" width="104" height="104" clip-path="url(#rr)"/><rect x="1260" y="268" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_1.jpg" x="700" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="700" y="432" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_2.jpg" x="812" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="812" y="432" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_3.jpg" x="924" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="924" y="432" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_4.jpg" x="1036" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="1036" y="432" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_6.jpg" x="1148" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="1148" y="432" width="104" height="104" rx="5"/>
+            <image href="media/method/tile_feat_7.jpg" x="1260" y="432" width="104" height="104" clip-path="url(#rr)"/><rect x="1260" y="432" width="104" height="104" rx="5"/>
+          </g>
+          <rect class="col-hl" x="695" y="99" width="114" height="114" rx="8"/>
+          <rect class="col-hl" x="695" y="263" width="114" height="114" rx="8"/>
+          <rect class="col-hl" x="695" y="427" width="114" height="114" rx="8"/>
+          <path class="fl" d="M560 187C628 187 628 156 690 156" marker-end="url(#ah)"/>
+          <path class="fl" d="M560 522C630 522 630 320 690 320" marker-end="url(#ah)"/>
+          <path class="fl" d="M560 550C630 550 630 484 690 484" marker-end="url(#ah)"/>
+          <text class="quote" x="1032" y="590">&#8467;<tspan baseline-shift="sub" font-size="70%">i</tspan>(&#960;<tspan baseline-shift="sub" font-size="70%">i</tspan><tspan baseline-shift="super" font-size="60%">&#8722;1</tspan>(p)) = &#8467;<tspan baseline-shift="sub" font-size="70%">j</tspan>(&#960;<tspan baseline-shift="sub" font-size="70%">j</tspan><tspan baseline-shift="super" font-size="60%">&#8722;1</tspan>(p)) = &#8467;(p)   &#183;   every overlap agrees by construction</text>
+        </svg>
+      </div>
+      <p class="caption"><b>Feature Puzzles.</b> Crops of one parent image act as views. Because each crop is fixed by a map &#960;<sub>n</sub> we chose, SAM masks and DINO features computed once on the parent are pulled back into every view, and any two views read the same parent label wherever they overlap.
+        <button class="fig-open" type="button" data-src="media/method/fig_puzzles.jpg" data-cap="Paper figure: Feature Puzzles pipeline. From a single RGB(-D) parent image (A), overlapping crops are sampled as a puzzle (B), optionally calibrated and 3D-augmented (C), and SAM masks (D) and DINO features (E) are pulled back into every crop (bottom).">View paper figure</button></p>
+    </div>
+
+    <!-- ── part 2: network (paper Fig. 3) ─────────────────────────────────── -->
+    <div class="method-part">
+      <div class="method-head">
+        <span class="method-num">2</span>
+        <div>
+          <h3>Network: one pretrained backbone, three decoders</h3>
+          <p>A pretrained VGGT-Omega encoder and aggregator are shared by a geometry decoder, a prompt-conditioned mask decoder and a dense feature decoder. Only the late backbone blocks are adapted, with low-rank adapters.</p>
+        </div>
+      </div>
+      <div class="fig-wrap">
+        <svg class="fig-method" viewBox="0 0 1400 700" role="img" aria-labelledby="net-title">
+          <title id="net-title">Network: unposed images pass through an image encoder and aggregator into geometry, mask and feature decoders</title>
+          <defs>
+            <marker id="ah2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1L9 5L1 9" fill="none" stroke="#93b6ff" stroke-width="1.6"/></marker>
+            <clipPath id="rr2" clipPathUnits="objectBoundingBox"><rect width="1" height="1" rx=".06" ry=".06"/></clipPath>
+          </defs>
+          <rect class="panel" x="10" y="10" width="1380" height="680" rx="14"/>
+          <text class="ptitle" x="34" y="46">NETWORK  &#183;  ONE BACKBONE, THREE DECODERS</text>
+
+          <!-- inputs -->
+          <rect class="ghost" x="68" y="186" width="156" height="151" rx="8"/>
+          <rect class="ghost" x="58" y="196" width="156" height="151" rx="8"/>
+          <g class="frame"><image href="media/method/net_input.jpg" x="48" y="206" width="156" height="151" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="48" y="206" width="156" height="151" rx="8"/></g>
+          <text class="lbl" x="130" y="392">Unposed images</text>
+          <text class="sub" x="130" y="414">any number of views</text>
+
+          <!-- backbone -->
+          <text class="sub" x="425" y="174">pretrained VGGT-Omega backbone</text>
+          <path class="fl" d="M210 282H246" marker-end="url(#ah2)"/>
+          <rect class="blk blue" x="250" y="192" width="150" height="180" rx="16"/>
+          <text class="blbl" x="325" y="276">Image</text>
+          <text class="blbl" x="325" y="300">Encoder</text>
+          <path class="fl" d="M400 282H416" marker-end="url(#ah2)"/>
+          <rect class="blk blue" x="420" y="192" width="150" height="180" rx="16"/>
+          <text class="blbl" x="495" y="278">Aggregator</text>
+          <text class="sub" x="495" y="304">cross-view</text>
+          <rect class="blk gold" x="578" y="192" width="22" height="180" rx="6"/>
+          <text class="vlbl" transform="translate(594 282) rotate(-90)">LoRA</text>
+
+          <!-- trunk -->
+          <path class="fl solid" d="M600 282H640M640 100V462"/>
+          <path class="fl" d="M640 100H676" marker-end="url(#ah2)"/>
+          <path class="fl" d="M640 270H676" marker-end="url(#ah2)"/>
+          <path class="fl" d="M640 462H676" marker-end="url(#ah2)"/>
+
+          <!-- decoders -->
+          <rect class="blk grey" x="680" y="58" width="210" height="84" rx="14"/>
+          <text class="blbl" x="785" y="96">Geometry Decoder</text>
+          <text class="sub" x="785" y="122">unchanged</text>
+          <rect class="blk pink" x="680" y="228" width="210" height="84" rx="14"/>
+          <text class="blbl pk" x="785" y="276">Mask Decoder</text>
+          <path class="fl" d="M785 334V316" marker-end="url(#ah2)"/>
+          <rect class="blk blue" x="680" y="334" width="210" height="60" rx="12"/>
+          <text class="blbl sm" x="785" y="360">Prompt Encoder</text>
+          <text class="sub" x="785" y="382">mask &#183; points &#183; box</text>
+          <rect class="blk pink" x="680" y="420" width="210" height="84" rx="14"/>
+          <text class="blbl pk" x="785" y="468">Feature Decoder</text>
+          <rect class="blk blue" x="680" y="560" width="210" height="60" rx="12"/>
+          <text class="blbl sm" x="785" y="586">Text Prompt Encoder</text>
+          <text class="sub" x="785" y="608">&#8220;sofa&#8221;</text>
+
+          <!-- outputs -->
+          <path class="fl" d="M890 100H926" marker-end="url(#ah2)"/>
+          <g class="frame"><image href="media/method/net_pointcloud.jpg" x="930" y="28" width="236" height="144" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="930" y="28" width="236" height="144" rx="8"/></g>
+          <text class="lbl" x="1290" y="94">Camera poses</text>
+          <text class="lbl" x="1290" y="118">&amp; point cloud</text>
+
+          <path class="fl" d="M890 270H926" marker-end="url(#ah2)"/>
+          <g class="frame">
+            <image href="media/method/net_mask_1.jpg" x="930" y="225" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="930" y="225" width="90" height="90" rx="6"/>
+            <image href="media/method/net_mask_2.jpg" x="1028" y="225" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1028" y="225" width="90" height="90" rx="6"/>
+            <image href="media/method/net_mask_3.jpg" x="1126" y="225" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1126" y="225" width="90" height="90" rx="6"/>
+          </g>
+          <text class="lbl" x="1300" y="264">Prompted masks</text>
+          <text class="sub" x="1300" y="288">every view, one pass</text>
+
+          <path class="fl" d="M890 462H926" marker-end="url(#ah2)"/>
+          <g class="frame">
+            <image href="media/method/net_feat_1.jpg" x="930" y="417" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="930" y="417" width="90" height="90" rx="6"/>
+            <image href="media/method/net_feat_2.jpg" x="1028" y="417" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1028" y="417" width="90" height="90" rx="6"/>
+            <image href="media/method/net_feat_3.jpg" x="1126" y="417" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1126" y="417" width="90" height="90" rx="6"/>
+          </g>
+          <text class="lbl" x="1300" y="456">Dense features</text>
+          <text class="sub" x="1300" y="480">multi-view consistent</text>
+
+          <path class="fl" d="M975 507V538H912V572" marker-end="url(#ah2)"/>
+          <path class="fl" d="M890 590H894" marker-end="url(#ah2)"/>
+          <circle class="oplus" cx="912" cy="590" r="14"/>
+          <path class="oplus-x" d="M912 579V601M901 590H923"/>
+          <path class="fl" d="M926 590H940" marker-end="url(#ah2)"/>
+          <g class="frame">
+            <image href="media/method/net_ov_1.jpg" x="946" y="545" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="946" y="545" width="90" height="90" rx="6"/>
+            <image href="media/method/net_ov_2.jpg" x="1044" y="545" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1044" y="545" width="90" height="90" rx="6"/>
+            <image href="media/method/net_ov_3.jpg" x="1142" y="545" width="90" height="90" preserveAspectRatio="xMidYMid slice" clip-path="url(#rr2)"/><rect x="1142" y="545" width="90" height="90" rx="6"/>
+          </g>
+          <text class="lbl" x="1310" y="584">Open-vocabulary</text>
+          <text class="lbl" x="1310" y="608">3D masks</text>
+
+          <text class="clbl" x="34" y="668">Mask and feature decoders: prompt projection &#8594; cross-view attention &#8594; weighted pixel / RGB-guided decoder, on the backbone&#8217;s multi-layer tokens.</text>
+        </svg>
+      </div>
+      <p class="caption"><b>Network.</b> The geometry decoder keeps the backbone&#8217;s camera and point-cloud outputs. The mask decoder turns mask, point or box prompts on any view into masks on every view, and the feature decoder&#8217;s dense features are matched against a text prompt for open-vocabulary 3D segmentation.
+        <button class="fig-open" type="button" data-src="media/method/fig_network.jpg" data-cap="Paper figure: network architecture. A shared image encoder and aggregator feed three decoders: geometry (poses, 3D points), prompt-conditioned mask (mask / point / box to masks), and feature (matched with a text prompt for open-vocabulary masks).">View paper figure</button></p>
+    </div>
   </div>
 </section>
 
 <!-- ── task sections, filled in from data/manifest.json ──────────────────── -->
 <section class="task" id="promptable" data-task="promptable"></section>
 <section class="task alt" id="openvocab" data-task="openvocab"></section>
+
+<section class="prose" id="bibtex">
+  <div class="wrap">
+    <h2 class="section-title">BibTeX</h2>
+<pre class="cite">@inproceedings{ma2027featurepuzzles,
+  title     = {Feature Puzzles: Single-Image Supervision for Multi-View 3D-Aware Segmentation},
+  author    = {Ma, Jiahao and Zhang, Qiang and Liu, Miaomiao and Ahmedt-Aristizabal, David and Nguyen, Chuong},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2027}
+}</pre>
+  </div>
+</section>
 </main>
 
 <footer class="foot">
   <div class="wrap narrow">
-    <p>Project page for an anonymous submission. Every video on this page is a
-      raw inference result &mdash; nothing is hand-corrected, and no scene is
-      optimized.</p>
+    <p>Every video on this page is a raw inference result &mdash; nothing is
+      hand-corrected, and no scene is optimized.</p>
     <p class="build" id="build-stamp"></p>
   </div>
 </footer>
@@ -76,5 +319,9 @@
 </div>
 
 <script src="js/site.js"></script>
+<script>
+  document.querySelectorAll('.fig-open').forEach(b =>
+    b.addEventListener('click', () => openLightbox(b.dataset.src, b.dataset.cap)));
+</script>
 </body>
 </html>
