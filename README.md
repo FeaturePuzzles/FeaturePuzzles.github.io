@@ -169,11 +169,14 @@ Add arXiv or code buttons in `index.html` once those links exist.
 
 ## Video, abstract and method
 
-- **Video** (`media/promo/`) is rendered by `promo/make_promo.py`: it walks
-  through the paper's Fig. 2 (Feature Puzzles) and Fig. 3 (network) step by step,
-  then plays promptable and open-vocabulary results from `media/`. Run it with
-  `FFMPEG=<path to ffmpeg> python promo/make_promo.py . <paper>/figures <out>`.
-  It uses macOS system fonts (New York, Avenir Next).
+- **Video** (`media/promo/`) is rendered by `promo/make_promo.py`. The method part
+  rebuilds the page's two flowcharts element by element, then it plays promptable
+  and open-vocabulary results from `media/`. Narration comes from macOS `say`
+  (voice Samantha by default; pass `--voice` to use another installed voice), and
+  every step lasts as long as its sentence. Text uses the page's Newsreader and
+  Inter (OFL, static instances in `promo/fonts/`); math symbols use STIX Two Math.
+  Run `FFMPEG=<path to ffmpeg> python promo/make_promo.py . <out>` and copy
+  `<out>/feature_puzzles_promo.mp4` and `poster.jpg` into `media/promo/`.
 - **Method** diagrams are inline SVG in `index.html`. Their thumbnails in
   `media/method/` are cut from the paper figures by `promo/crop_method_figs.py`;
   `fig_puzzles.jpg` and `fig_network.jpg` are the full figures for the
@@ -193,7 +196,7 @@ folder `/ (root)`. `.nojekyll` is committed, so Jekyll does not touch the files.
 `tools/` (the 77 MB static ffmpeg) is in `.gitignore`: it builds the media but is
 not part of the published site. Everything else that is committed is served.
 
-The published size is about **660 MB** (616 MB of results plus the 43 MB video), under the 1 GB GitHub Pages limit, at
+The published size is about **660 MB** (616 MB of results plus the 81 MB narrated video; keep the video under GitHub's 100 MB file limit), under the 1 GB GitHub Pages limit, at
 `--width 854 --crf 34`. Re-running `./build_site.py` without those flags rebuilds
 at the old 1280 px / crf 25 defaults and takes the site back over 1 GB, so pass
 them (or edit the defaults) whenever the media is rebuilt for the live site.
