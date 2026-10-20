@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Feature Puzzles &middot; ICLR 2027</title>
-<meta name="description" content="Feature Puzzles: single-image supervision for multi-view 3D-aware segmentation (ICLR 2027). Promptable multi-view segmentation and open-vocabulary 3D segmentation.">
+<title>Feature Puzzles &middot; Project page</title>
+<meta name="description" content="Feature Puzzles: single-image supervision for multi-view 3D-aware segmentation . Promptable multi-view segmentation and open-vocabulary 3D segmentation.">
 <meta property="og:title" content="Feature Puzzles: Single-Image Supervision for Multi-View 3D-Aware Segmentation">
-<meta property="og:description" content="Multi-view-consistent segmentation learned from single images. ICLR 2027.">
+<meta property="og:description" content="Multi-view-consistent segmentation learned from single images.">
 <meta property="og:image" content="https://featurepuzzles.github.io/media/cover_sm.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,8 @@
 <nav class="nav">
   <a class="nav-brand" href="#top">Feature&nbsp;Puzzles</a>
   <div class="nav-links">
-    <a href="#abstract">Abstract</a>
     <a href="#video">Video</a>
+    <a href="#abstract">Abstract</a>
     <a href="#method">Method</a>
     <a href="#promptable">Promptable</a>
     <a href="#openvocab">Open&#8209;vocabulary</a>
@@ -29,20 +29,19 @@
 
 <header class="hero" id="top">
   <div class="wrap">
-    <p class="venue">ICLR 2027</p>
     <h1 class="title">Feature Puzzles</h1>
     <p class="subtitle">Single-Image Supervision for Multi-View 3D-Aware Segmentation</p>
     <p class="authors">
-      <span>Jiahao Ma<sup>1</sup></span>
-      <span>Qiang Zhang<sup>2</sup></span>
-      <span>Miaomiao Liu<sup>1</sup></span>
-      <span>David Ahmedt-Aristizabal<sup>3</sup></span>
-      <span>Chuong Nguyen<sup>3</sup></span>
+      <span><a href="https://jiahao-ma.github.io/">Jiahao Ma</a><sup>1</sup></span>
+      <span><a href="https://jonyzhang2023.github.io/">Qiang Zhang</a><sup>2</sup></span>
+      <span><a href="http://users.cecs.anu.edu.au/~mliu/">Miaomiao Liu</a><sup>1</sup></span>
+      <span><a href="https://people.csiro.au/a/d/david-ahmedtaristizabal">David Ahmedt-Aristizabal</a><sup>3</sup></span>
+      <span><a href="https://people.csiro.au/N/C/Chuong-Nguyen">Chuong Nguyen</a><sup>3</sup></span>
     </p>
     <p class="affils">
       <span><sup>1</sup>Australian National University</span>
       <span><sup>2</sup>University of Science and Technology of China</span>
-      <span><sup>3</sup>CSIRO</span>
+      <span><sup>3</sup>CSIRO&rsquo;s Data61</span>
     </p>
     <div class="links">
       <a class="btn" href="https://openreview.net/forum?id=C9iJlwJc0W">Paper</a>
@@ -50,22 +49,21 @@
       <a class="btn" href="#bibtex">BibTeX</a>
     </div>
 
-    <figure class="teaser" id="teaser">
-      <img id="teaser-cover" src="media/cover.jpg"
-           srcset="media/cover_sm.jpg 1200w, media/cover.jpg 2400w"
-           sizes="(max-width: 760px) 100vw, 1220px"
-           alt="Feature Puzzles: promptable multi-view segmentation, spatial tracking and open-vocabulary 3D segmentation">
-      <figcaption>
-        <b>What one single-image-supervised model does across three settings.</b>
-        Prompts given on one view propagated to every other view (A), a person and
-        the floor carried through a whole video (B), and open-vocabulary instances
-        fused in 3D at room and building scale (C).
-      </figcaption>
-    </figure>
   </div>
 </header>
 
 <main>
+
+<section class="prose" id="video">
+  <div class="wrap">
+    <h2 class="section-title">Video</h2>
+    <div class="promo">
+      <video controls playsinline preload="metadata" poster="media/promo/poster.jpg">
+        <source src="media/promo/feature_puzzles_promo.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
 
 <section class="prose" id="abstract">
   <div class="wrap">
@@ -77,17 +75,6 @@
         <li><span class="tick" aria-hidden="true"></span><span><b>Plug-and-play on a 3D foundation model.</b> Lightweight decoders sit on a pretrained VGGT-Omega backbone. Its low-rank adapters switch off at inference, so the original depth and camera outputs are kept.</span></li>
         <li><span class="tick" aria-hidden="true"></span><span><b>One model, many prompts.</b> Mask, point or box prompts from one or more views return masks on every view in a single forward pass, and the same features extend to open-vocabulary 3D segmentation.</span></li>
       </ul>
-    </div>
-  </div>
-</section>
-
-<section class="prose" id="video">
-  <div class="wrap">
-    <h2 class="section-title">Video</h2>
-    <div class="promo">
-      <video controls playsinline preload="metadata" poster="media/promo/poster.jpg">
-        <source src="media/promo/feature_puzzles_promo.mp4" type="video/mp4">
-      </video>
     </div>
   </div>
 </section>
@@ -291,11 +278,11 @@
 <section class="prose" id="bibtex">
   <div class="wrap">
     <h2 class="section-title">BibTeX</h2>
-<pre class="cite">@inproceedings{ma2027featurepuzzles,
-  title     = {Feature Puzzles: Single-Image Supervision for Multi-View 3D-Aware Segmentation},
-  author    = {Ma, Jiahao and Zhang, Qiang and Liu, Miaomiao and Ahmedt-Aristizabal, David and Nguyen, Chuong},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2027}
+<pre class="cite">@misc{ma2026featurepuzzles,
+  title  = {Feature Puzzles: Single-Image Supervision for Multi-View 3D-Aware Segmentation},
+  author = {Ma, Jiahao and Zhang, Qiang and Liu, Miaomiao and Ahmedt-Aristizabal, David and Nguyen, Chuong},
+  year   = {2026},
+  url    = {https://featurepuzzles.github.io/}
 }</pre>
   </div>
 </section>
