@@ -2,11 +2,17 @@
 
 The method part is the project page's two flowcharts, built up element by
 element: boxes fade in, connectors draw themselves, then the dashes flow.
-Narration comes from macOS `say`; each step lasts as long as its sentence.
+Every step lasts as long as its sentence.
+
+Narration backends:
+  --tts kokoro   Kokoro-82M neural TTS (default). Needs KOKORO_PY (a python with
+                 kokoro-onnx installed) and KOKORO_DIR (kokoro-v1.0.onnx and
+                 voices-v1.0.bin); --voice picks the speaker (default af_heart).
+  --tts say      macOS `say` (--voice Samantha, --rate 172).
 
 usage:
-  FFMPEG=<ffmpeg> python -I make_promo.py SITE_DIR OUT_DIR [--voice NAME] [--rate WPM] [segment ...]
-  (segments: tts, then any of ORDER, then 'final' to concatenate and mux)
+  FFMPEG=<ffmpeg> python -I make_promo.py SITE_DIR OUT_DIR [--tts kokoro|say] [--voice V] [segment ...]
+  (segments: tts, then any of the JOBS names, then 'final' to concatenate, mux and size)
 """
 import json, math, os, re, subprocess, sys
 import numpy as np
@@ -14,9 +20,13 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 FF = os.environ["FFMPEG"]
 args = sys.argv[1:]
-VOICE, RATE = "Samantha", 172
-if "--voice" in args: i = args.index("--voice"); VOICE = args[i + 1]; del args[i:i + 2]
-if "--rate" in args: i = args.index("--rate"); RATE = int(args[i + 1]); del args[i:i + 2]
+def opt(name, default):
+    if name in args: i = args.index(name); v = args[i + 1]; del args[i:i + 2]; return v
+    return default
+TTS = opt("--tts", "kokoro")
+VOICE = opt("--voice", "af_heart" if TTS == "kokoro" else "Samantha")
+RATE = int(opt("--rate", "172")); SPEED = float(opt("--speed", "0.82"))
+MAX_MB = float(opt("--max-mb", "92"))
 SITE, OUT = args[0], args[1]
 ONLY = args[2:]
 W, H, FPS, SR = 1920, 1080, 30, 48000
@@ -30,53 +40,70 @@ GOLD_T = (240, 207, 138); PINK_T = (242, 189, 234)
 
 # ── narration: id -> (spoken, subtitle) ────────────────────────────────────
 VO = {
-    "title": ("Feature Puzzles: single-image supervision for multi-view, 3D-aware segmentation.", None),
-    "mot1": ("We easily recognize the same object from any viewpoint.", None),
-    "mot2": ("Teaching a model to do this usually takes videos, or calibrated multi-view captures.", None),
-    "mot3": ("We show that single images are enough.", None),
-    "ch1": ("First, Feature Puzzles: multi-view supervision from a single image.", None),
-    "fa0": ("We start from one single image.", None),
-    "fa1": ("We cut it into overlapping crops. Each crop becomes a view, tied to the parent image by a map we chose, so no camera pose is ever estimated.", None),
-    "fa2": ("Optionally, estimated depth lifts the crops into 3D, adding real parallax.", None),
-    "fa3": ("Labels are computed only once, on the parent image: SAM instance masks, and dense DINO features.", None),
-    "fa4": ("We pull the masks back into every view. Each instance is the same object in every crop, so no matching is needed.", None),
-    "fa5": ("Features are pulled back the same way, giving every view consistent targets.", None),
-    "fa6": ("Wherever two views overlap, they read the same parent label. Consistency holds by construction.", None),
+    "title": ("This is Feature Puzzles: single-image supervision for multi-view, 3D-aware segmentation.", None),
+    "mot1": ("Look at a room from a few different angles, and you instantly know it's the same sofa, the same lamp.", None),
+    "mot2": ("For a model, learning that usually means training on videos, or on carefully calibrated multi-view captures.", None),
+    "mot3": ("We found that single images are enough.", None),
+    "ch1": ("Let's start with the data: Feature Puzzles.", None),
+    "fa0": ("Everything begins with just one image.", None),
+    "fa1": ("We cut it into overlapping crops, and treat each crop as its own view. Since we chose every crop ourselves, we know exactly how it maps back to the original. There are no camera poses to estimate.", None),
+    "fa2": ("If we want real parallax, we can also lift the crops into 3D, using estimated depth.", None),
+    "fa3": ("Now, the labels. We compute them only once, on the original image: SAM instance masks, and dense DINO features.", None),
+    "fa4": ("Then we simply pull the masks back into every crop. An object is the same instance in every view, so there's nothing to match.", None),
+    "fa5": ("The features come back the same way, so every view gets consistent targets.", None),
+    "fa6": ("So wherever two views overlap, they see exactly the same label. Consistency comes for free.", None),
     "ch2": ("Next, the network.", None),
-    "nb0": ("A pretrained VGGT Omega backbone encodes the unposed images, with low-rank adapters on its late blocks.",
-            "A pretrained VGGT-Omega backbone encodes the unposed images, with low-rank adapters on its late blocks."),
-    "nb1": ("Its geometry decoder still predicts camera poses and the point cloud.", None),
-    "nb2": ("A mask decoder turns mask, point, or box prompts into masks on every view.", None),
-    "nb3": ("A feature decoder predicts dense, multi-view consistent features.", None),
-    "nb4": ("Matched against a text prompt, they give open-vocabulary 3D segmentation.", None),
-    "ch3": ("Promptable multi-view segmentation. A prompt on one view reaches every view, in a single forward pass.", None),
-    "p1": ("Prompts on one frame of an AI-generated video segment the whole reconstruction.", None),
-    "p2": ("These clips come with no depth and no poses. The geometry is the backbone's own.", None),
-    "p3": ("On ScanNet, every object keeps one identity across all views.", None),
-    "p4": ("There is no per-scene optimization, no tracking, and no pairwise matching.", None),
-    "p5": ("The same holds on ScanNet plus plus.", "The same holds on ScanNet++."),
-    "p6": ("Even cluttered offices stay consistent from view to view.", None),
-    "p7": ("In dynamic scenes, a person and the floor are tracked through the whole video.", None),
-    "pgrid": ("More scenes, all from one model trained on single images.", None),
-    "ch4": ("Open-vocabulary 3D segmentation.", None),
-    "o1": ("Text queries are matched against the distilled features, and fused into 3D instances.", None),
-    "o2": ("Each object is found once, and consistently, across all views.", None),
-    "o3": ("On ScanNet plus plus, the features transfer zero-shot.", "On ScanNet++, the features transfer zero-shot."),
-    "o4": ("Every query returns instances in 3D, not just in single frames.", None),
-    "o5": ("At building scale, it finds hundreds of instances from free-form queries.", None),
-    "ogrid": ("From single rooms to whole buildings.", None),
-    "outro": ("Feature Puzzles. More results are on our project page.", None),
+    "nb0": ("We start from a pretrained VGGT Omega backbone, and adapt only its last blocks, with LoRA.",
+            "We start from a pretrained VGGT-Omega backbone, and adapt only its last blocks, with LoRA."),
+    "nb1": ("Its geometry decoder keeps doing what it did: camera poses, and a point cloud.", None),
+    "nb2": ("A mask decoder takes a mask, a point, or a box, and returns masks on every view.", None),
+    "nb3": ("A feature decoder predicts dense features that agree across views.", None),
+    "nb4": ("And matching those features to a text prompt gives us open-vocabulary 3D segmentation.", None),
+    "ch3": ("Let's see it in action. First, promptable multi-view segmentation.", None),
+    "p1a": ("Here's an AI-generated walkthrough. We prompt a few objects, in just one frame.", None),
+    "p1b": ("In a single forward pass, every frame, and the whole reconstruction, is segmented.", None),
+    "p1c": ("There's no depth, no camera poses, and no per-scene optimization here. The geometry comes straight from the backbone.", None),
+    "p2a": ("This one is a real scan, from ScanNet plus plus.", "This one is a real scan, from ScanNet++."),
+    "p2b": ("Each object keeps one identity across all the views, without any tracking or matching.", None),
+    "p2c": ("And remember: during training, the model never saw a single multi-view example.", None),
+    "pg1a": ("Here are more AI-generated scenes: bedrooms, kitchens, libraries, a tavern.", None),
+    "pg1b": ("Every one of them runs feed-forward, with the very same model.", None),
+    "pg2a": ("On real scans from ScanNet and ScanNet plus plus, it works just as well.", "On real scans from ScanNet and ScanNet++, it works just as well."),
+    "pg2b": ("Bathrooms, offices, living rooms: each object stays consistent from view to view.", None),
+    "pg3a": ("It even handles dynamic scenes.", None),
+    "pg3b": ("Here, a person and the floor are followed through the whole video, while the camera moves.", None),
+    "ch4": ("Now, open-vocabulary 3D segmentation.", None),
+    "o1a": ("We type a few words, like sofa, desk, bed, or bookshelf.", None),
+    "o1b": ("The matching instances are found, and fused in 3D, across every view.", None),
+    "o2a": ("It scales up, too. In this car museum, it picks out two hundred and seventy-nine instances.", "It scales up, too. In this car museum, it picks out 279 instances."),
+    "o2b": ("Cars, kiosks, escalators, all from free-form text.", None),
+    "og1a": ("Here are more rooms from ScanNet.", None),
+    "og2a": ("And from ScanNet plus plus. All of it zero-shot.", "And from ScanNet++. All of it zero-shot."),
+    "og3a": ("And at building scale: warehouses, offices, and construction sites.", None),
+    "og3b": ("Hundreds, even thousands of instances, from a model trained on single images.", None),
+    "outro": ("That's Feature Puzzles. Thanks for watching, and you'll find more on our project page.", None),
 }
 def subtitle(k): s, d = VO[k]; return d or s
 
+def to_wav(src, wav):
+    subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", src, "-ac", "1", "-ar", str(SR),
+                    "-af", "silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse",
+                    wav], check=True)
+
 def tts():
-    for k, (spoken, _) in VO.items():
-        aiff = os.path.join(OUT, "vo", k + ".aiff"); wav = os.path.join(OUT, "vo", k + ".wav")
-        subprocess.run(["say", "-v", VOICE, "-r", str(RATE), "-o", aiff, spoken], check=True)
-        subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", aiff, "-ac", "1", "-ar", str(SR),
-                        "-af", "silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse",
-                        wav], check=True)
-        os.remove(aiff)
+    vod = os.path.join(OUT, "vo")
+    if TTS == "kokoro":
+        job = os.path.join(vod, "_job.json")
+        json.dump({"voice": VOICE, "speed": SPEED, "lines": {k: v[0] for k, v in VO.items()}, "out": vod}, open(job, "w"))
+        subprocess.run([os.environ["KOKORO_PY"], "-I", os.path.join(os.path.dirname(os.path.abspath(__file__)), "tts_kokoro.py"),
+                        job, os.environ["KOKORO_DIR"]], check=True)
+        for k in VO:
+            raw = os.path.join(vod, k + ".raw.wav"); to_wav(raw, os.path.join(vod, k + ".wav")); os.remove(raw)
+    else:
+        for k, (spoken, _) in VO.items():
+            aiff = os.path.join(vod, k + ".aiff")
+            subprocess.run(["say", "-v", VOICE, "-r", str(RATE), "-o", aiff, spoken], check=True)
+            to_wav(aiff, os.path.join(vod, k + ".wav")); os.remove(aiff)
     print("tts:", {k: round(vo_len(k), 2) for k in VO})
 
 def read_wav(path):
@@ -651,6 +678,10 @@ def scene(task, sid):
                 if sc["id"] == sid: return g, sc
     raise KeyError(sid)
 
+def probe_dur(path):
+    out = subprocess.run([FF, "-hide_banner", "-i", path], capture_output=True, text=True).stderr
+    h, m, s_ = re.search(r"Duration: (\d+):(\d+):([\d.]+)", out).groups(); return int(h) * 3600 + int(m) * 60 + float(s_)
+
 def head_layer(tag, title, x0):
     L = layer(); d = ImageDraw.Draw(L); tf = sans(22, "Demi")
     tw = d.textlength(tag, font=tf) + 34
@@ -660,9 +691,27 @@ def head_layer(tag, title, x0):
     d.text((x0 + tw + 20, 66), title, font=tfont, fill=FG + (255,), anchor="lm")
     return L
 
-def seg_clip(name, key, task, sid, start, base_dur, mode="follow"):
+def narrate(s, lines, dur):
+    """lines: [(key, at)]; returns a function t -> blended subtitle frame overlay list."""
+    lines = sorted(lines, key=lambda z: z[1])
+    for k, at in lines: s.say(k, at)
+    spans = []
+    for i, (k, at) in enumerate(lines):
+        end = lines[i + 1][1] - 0.15 if i + 1 < len(lines) else dur - 0.3
+        end = min(end, at + vo_len(k) + 1.6)
+        spans.append((k, at, end))
+    return spans
+
+def draw_subs(f, spans, t, y0):
+    for k, a, b in spans:
+        kk = min(ramp(t, a - 0.15, a + 0.2), 1 - ramp(t, b - 0.2, b))
+        if kk > 0: f = over(f, subtitle_layer(k, y0=y0), kk)
+    return f
+
+def seg_clip(name, lines, task, sid, start=0.0, dur=None, mode="follow"):
+    """One scene, played in full unless dur is given; `lines` = [(vo key, time)]."""
     g, sc = scene(task, sid)
-    s = Seg(name); dur = max(base_dur, vo_len(key) + 2.2)
+    s = Seg(name)
     if task == "promptable":
         main = sc["modes"]["hl"]["bev" if mode == "bev" else "follow"]
         side = [("vid", sc["rgb"], "INPUT VIDEO")]
@@ -673,7 +722,9 @@ def seg_clip(name, key, task, sid, start, base_dur, mode="follow"):
         main = sc[mode]; side = [("vid", sc["input"], "INPUT VIDEO")]
         q = sorted([(x["name"], x["color"], x["n"]) for x in sc["queries"] if x["n"] > 0], key=lambda z: -z[2])
         chips = q[:14]; chips_title = "TEXT QUERIES  ·  INSTANCES"
-        title = sc["id"] if g["id"] != "farm" else f"Building scale  ·  {sc['stats']['instances']} instances"
+        title = sc["id"] if g["id"] != "farm" else f"Car museum  ·  {sc['stats']['instances']} instances"
+    if dur is None: dur = probe_dur(os.path.join(SITE, main)) - start
+    last = max(at + vo_len(k) for k, at in lines); dur = max(dur, last + 1.2)
     aspect = probe_aspect(os.path.join(SITE, main))
     mh = 790; mw = round(mh * aspect); mx, my = 40, 116
     sx = mx + mw + 30; sw = W - 40 - sx
@@ -697,57 +748,62 @@ def seg_clip(name, key, task, sid, start, base_dur, mode="follow"):
     if chips:
         d.text((sx, y - 26), chips_title, font=sans(20, "Demi"), fill=DIM + (255,), anchor="ls")
         chip_row(d, sx, y - 12, chips, sans(21, "Demi"), sw)
-    lab = to_f(L); sub = subtitle_layer(key, y0=995)
-    s.say(key, 0.6)
+    lab = to_f(L); spans = narrate(s, lines, dur)
     for i in range(int(dur * FPS)):
         t = i / FPS; f = BASE.copy()
         for l in layers: f = over(f, l)
         paste(f, main_f[i].astype(np.float32), mx, my, mmask)
         for (xx, yy, ww, hh, mk, arr, frames) in items:
             paste(f, arr if frames is None else frames[i].astype(np.float32), xx, yy, mk)
-        f = over(f, lab); f = over(f, sub, ramp(t, 0.4, 0.8))
-        s.put(f * fade_k(t, dur, 0.4, 0.4))
+        f = over(f, lab); f = draw_subs(f, spans, t, 995)
+        s.put(f * fade_k(t, dur, 0.4, 0.5))
     s.close()
 
-def seg_grid(name, key, task, picks, start, dur, heading):
-    s = Seg(name); dur = max(dur, vo_len(key) + 2.0)
-    tiles = []
-    first = scene(task, picks[0][0])[1]
-    asp = probe_aspect(os.path.join(SITE, first["modes"]["hl"]["bev"] if task == "promptable" else first["bev"]))
+def seg_grid(name, lines, task, picks, start, dur, heading, mode="bev"):
+    """Up to six scenes at once, 3 per row, last row centred."""
+    s = Seg(name)
+    last = max(at + vo_len(k) for k, at in lines); dur = max(dur, last + 1.2)
+    def path_of(sc): return sc["modes"]["hl"][mode] if task == "promptable" else sc[mode]
+    first = scene(task, picks[0])[1]
+    asp = probe_aspect(os.path.join(SITE, path_of(first)))
     tw = 590 if asp > 1.5 else 520; th = round(tw / asp); gap = 22
-    gx = (W - 3 * tw - 2 * gap) // 2; gy = 120 if asp > 1.5 else 106
+    rows = (len(picks) + 2) // 3
+    gy = 120 if asp > 1.5 else 106
     L = layer(); d = ImageDraw.Draw(L)
     d.text((W / 2, 66), heading, font=serif(40, "Medium"), fill=FG + (255,), anchor="mm")
-    sh = []
-    for i, (sid, mode) in enumerate(picks):
+    tiles, sh = [], []
+    for i, sid in enumerate(picks):
         g, sc = scene(task, sid)
-        path = sc["modes"]["hl"][mode] if task == "promptable" else sc[mode]
-        x = gx + (i % 3) * (tw + gap); y = gy + (i // 3) * (th + gap)
-        tiles.append((x, y, clip_frames(os.path.join(SITE, path), start, dur, tw, th)))
+        r, c = divmod(i, 3); n_in_row = min(3, len(picks) - r * 3)
+        gx = (W - n_in_row * tw - (n_in_row - 1) * gap) // 2
+        x = gx + c * (tw + gap); y = gy + r * (th + gap)
+        st = 0.0 if (task == "promptable" and sc.get("dynamic")) else start
+        tiles.append((x, y, clip_frames(os.path.join(SITE, path_of(sc)), st, dur, tw, th)))
         sh.append(to_f(panel_frame(x, y, tw, th, 12)))
-        lab = (sc["name"] if sc["family"] not in ("ScanNet", "ScanNet++") else sc["id"]) if task == "promptable" else sc["id"]
-        tag = g["label"] if g["id"] != "farm" else "FARM"
+        lab = (sc["name"] if sc["family"] not in ("ScanNet", "ScanNet++") else sc["id"])
+        if g["id"] == "farm": lab = f"{sc['stats']['instances']} instances"
+        tag = {"farm": "FARM", "dynamic": "EMDB"}.get(g["id"], g["label"])
+        if g["id"] == "dynamic": lab = sc["name"].replace("EMDB ", "#")
         f_ = sans(19, "Demi"); txt = f"{tag}  ·  {lab}"; w_ = d.textlength(txt, font=f_) + 26
         d.rounded_rectangle([x + 12, y + th - 46, x + 12 + w_, y + th - 14], 16, fill=(8, 9, 12, 190))
         d.text((x + 25, y + th - 30), txt, font=f_, fill=FG + (255,), anchor="lm")
-    mask = rounded_mask(tw, th, 12); lab_l = to_f(L); sub = subtitle_layer(key, y0=1012 if asp > 1.5 else 1020)
-    s.say(key, 0.6)
+    mask = rounded_mask(tw, th, 12); lab_l = to_f(L); spans = narrate(s, lines, dur)
+    sub_y = min(1012, gy + rows * (th + gap) + 70)
     for i in range(int(dur * FPS)):
         t = i / FPS; f = BASE.copy()
         for l in sh: f = over(f, l)
         for k, (x, y, fr) in enumerate(tiles):
-            paste(f, fr[i].astype(np.float32), x, y, mask, ramp(t, 0.1 * k, 0.1 * k + 0.5))
-        f = over(f, lab_l); f = over(f, sub, ramp(t, 0.4, 0.8))
-        s.put(f * fade_k(t, dur, 0.4, 0.5))
+            paste(f, fr[i].astype(np.float32), x, y, mask, ramp(t, 0.12 * k, 0.12 * k + 0.5))
+        f = over(f, lab_l); f = draw_subs(f, spans, t, sub_y)
+        s.put(f * fade_k(t, dur, 0.4, 0.6))
     s.close()
 
 # ── assembly ───────────────────────────────────────────────────────────────
 def final():
-    names = [n for n in ORDER_NAMES]
     t, vo_events = 0.0, []
     lst = os.path.join(OUT, "list.txt")
     with open(lst, "w") as fh:
-        for n in names:
+        for n in ORDER_NAMES:
             meta = json.load(open(os.path.join(OUT, "seg", n + ".json")))
             fh.write(f"file '{os.path.join(OUT, 'seg', n + '.mp4')}'\n")
             for at, k in meta["vo"]: vo_events.append((t + at, k))
@@ -763,17 +819,27 @@ def final():
                     "-c:a", "pcm_s16le", wav], input=audio[:int(total * SR)].tobytes(), check=True)
     silent = os.path.join(OUT, "video_silent.mp4")
     subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy", silent], check=True)
-    outp = os.path.join(OUT, "feature_puzzles_promo.mp4")
-    subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", silent, "-i", wav, "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "160k", "-ac", "2", "-shortest", "-movflags", "+faststart", outp], check=True)
+    # two-pass to stay under GitHub's 100 MB file limit
+    kbps = int(min(3200, (MAX_MB * 8 * 1000 / total) - 140))
+    outp = os.path.join(OUT, "feature_puzzles_promo.mp4"); plog = os.path.join(OUT, "x264pass")
+    common = ["-c:v", "libx264", "-preset", "slow", "-b:v", f"{kbps}k", "-x264-params", "aq-mode=3", "-pix_fmt", "yuv420p"]
+    subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", silent] + common +
+                   ["-pass", "1", "-passlogfile", plog, "-an", "-f", "mp4", os.devnull], check=True)
+    subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-i", silent, "-i", wav, "-map", "0:v", "-map", "1:a"] + common +
+                   ["-pass", "2", "-passlogfile", plog, "-c:a", "aac", "-b:a", "128k", "-ac", "2", "-shortest",
+                    "-movflags", "+faststart", outp], check=True)
     subprocess.run([FF, "-hide_banner", "-loglevel", "error", "-y", "-ss", "3.0", "-i", outp, "-frames:v", "1",
                     "-vf", "scale=1280:-2", "-q:v", "3", os.path.join(OUT, "poster.jpg")], check=True)
-    print(f"final: {total:.1f}s, {len(vo_events)} narration clips -> {outp}")
+    print(f"final: {total:.1f}s at {kbps} kb/s, {os.path.getsize(outp) / 1e6:.1f} MB, {len(vo_events)} narration clips -> {outp}")
 
-PG = [("atlas_living_room", "bev"), ("marble_edit_kitchen_counters", "bev"), ("marble_chisel_bedroom_tuscany", "bev"),
-      ("scene0553_00", "bev"), ("02a980c994", "bev"), ("02f25e5fee", "bev")]
-OG = [("grandtour_2024-11-25_warehouse", "bev"), ("grandtour_2024-12-09_raw_lidar_s20", "bev"), ("odin1_SDH4and7_0413", "bev"),
-      ("scene0389_00", "bev"), ("0452249a1e", "bev"), ("02c2ddee2a", "bev")]
+PG_AI = ["atlas_living_room", "marble_chisel_bedroom_japanese", "marble_edit_kitchen_counters",
+         "marble_mesh_library_shaded", "marble_edit_tavern_post", "marble_chisel_bedroom_tuscany"]
+PG_REAL = ["scene0316_00", "scene0616_00", "scene0553_00", "02a980c994", "036bce3393", "02f25e5fee"]
+PG_DYN = ["EMDB_20", "EMDB_27", "EMDB_35", "EMDB_36", "EMDB_40", "EMDB_48"]
+OG_SN = ["scene0046_00", "scene0158_00", "scene0389_00", "scene0616_00", "scene0653_00", "scene0521_00"]
+OG_SNPP = ["00777c41d4", "0271889ec0", "02c2ddee2a", "0373d65cce", "0452249a1e", "036bce3393"]
+OG_FARM = ["grandtour_2024-11-25_warehouse", "grandtour_2024-12-09_raw_lidar_s20", "odin1_SDH4and7_0413",
+           "odin1_huang_ramp_dilation_1", "grandtour_2024-11-11_raw_lidar_s20"]
 JOBS = [
     ("00_title", seg_title),
     ("01_motivation", seg_motivation),
@@ -782,21 +848,17 @@ JOBS = [
     ("04_ch2", lambda: seg_chapter("04_ch2", "ch2", "STEP 2  ·  NETWORK", "One backbone, three decoders", "Geometry, promptable masks and open-vocabulary features")),
     ("05_flow_network", lambda: seg_flow("05_flow_network", flow_network(), ["nb0", "nb1", "nb2", "nb3", "nb4"], tail=1.0)),
     ("06_ch3", lambda: seg_chapter("06_ch3", "ch3", "RESULTS", "Promptable Multi-View Segmentation", "Prompt one view, get every view in a single forward pass")),
-    ("07_p1", lambda: seg_clip("07_p1", "p1", "promptable", "marble_i2w_living_room", 0, 12)),
-    ("08_p2", lambda: seg_clip("08_p2", "p2", "promptable", "marble_chisel_bedroom_scandinavian", 9, 10)),
-    ("09_p3", lambda: seg_clip("09_p3", "p3", "promptable", "scene0316_00", 0, 11)),
-    ("10_p4", lambda: seg_clip("10_p4", "p4", "promptable", "scene0616_00", 17, 10)),
-    ("11_p5", lambda: seg_clip("11_p5", "p5", "promptable", "0373d65cce", 0, 11)),
-    ("12_p6", lambda: seg_clip("12_p6", "p6", "promptable", "036bce3393", 15, 10)),
-    ("13_p7", lambda: seg_clip("13_p7", "p7", "promptable", "EMDB_35", 2, 10, mode="bev")),
-    ("14_pgrid", lambda: seg_grid("14_pgrid", "pgrid", "promptable", PG, 9, 9, "More promptable results")),
-    ("15_ch4", lambda: seg_chapter("15_ch4", "ch4", "RESULTS", "Open-Vocabulary 3D Segmentation", "Text queries become 3D instances, from rooms to buildings")),
-    ("16_o1", lambda: seg_clip("16_o1", "o1", "openvocab", "scene0000_01", 0.5, 10)),
-    ("17_o2", lambda: seg_clip("17_o2", "o2", "openvocab", "scene0616_00", 1.5, 10)),
-    ("18_o3", lambda: seg_clip("18_o3", "o3", "openvocab", "0373d65cce", 1.0, 10)),
-    ("19_o4", lambda: seg_clip("19_o4", "o4", "openvocab", "00dd871005", 1.0, 10)),
-    ("20_o5", lambda: seg_clip("20_o5", "o5", "openvocab", "grandtour_2024-11-11_raw_lidar_s20", 3.0, 11)),
-    ("21_ogrid", lambda: seg_grid("21_ogrid", "ogrid", "openvocab", OG, 4, 9, "More open-vocabulary results")),
+    ("07_p1", lambda: seg_clip("07_p1", [("p1a", 0.8), ("p1b", 7.5), ("p1c", 18.0)], "promptable", "marble_i2w_living_room")),
+    ("08_p2", lambda: seg_clip("08_p2", [("p2a", 0.8), ("p2b", 8.0), ("p2c", 20.0)], "promptable", "0373d65cce")),
+    ("09_pg_ai", lambda: seg_grid("09_pg_ai", [("pg1a", 0.8), ("pg1b", 9.0)], "promptable", PG_AI, 6.0, 20, "AI-generated videos")),
+    ("10_pg_real", lambda: seg_grid("10_pg_real", [("pg2a", 0.8), ("pg2b", 9.5)], "promptable", PG_REAL, 6.0, 20, "Real scans  ·  ScanNet and ScanNet++")),
+    ("11_pg_dyn", lambda: seg_grid("11_pg_dyn", [("pg3a", 0.8), ("pg3b", 4.5)], "promptable", PG_DYN, 0.0, 16, "Dynamic scenes  ·  EMDB")),
+    ("12_ch4", lambda: seg_chapter("12_ch4", "ch4", "RESULTS", "Open-Vocabulary 3D Segmentation", "Text queries become 3D instances, from rooms to buildings")),
+    ("13_o1", lambda: seg_clip("13_o1", [("o1a", 0.8), ("o1b", 7.0)], "openvocab", "scene0000_01")),
+    ("14_o2", lambda: seg_clip("14_o2", [("o2a", 0.8), ("o2b", 8.5)], "openvocab", "grandtour_2024-11-11_raw_lidar_s20")),
+    ("15_og_sn", lambda: seg_grid("15_og_sn", [("og1a", 0.8)], "openvocab", OG_SN, 0.0, 15, "ScanNet")),
+    ("16_og_snpp", lambda: seg_grid("16_og_snpp", [("og2a", 0.8)], "openvocab", OG_SNPP, 0.0, 15, "ScanNet++")),
+    ("17_og_farm", lambda: seg_grid("17_og_farm", [("og3a", 0.8), ("og3b", 7.0)], "openvocab", OG_FARM, 0.0, 15, "Building scale  ·  FARM-Scenes")),
     ("99_outro", seg_outro),
 ]
 ORDER_NAMES = [n for n, _ in JOBS]
