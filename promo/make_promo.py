@@ -248,7 +248,7 @@ def chip_row(d, x, y, items, font, maxw):
 # ── cards ──────────────────────────────────────────────────────────────────
 AUTHORS = [("Jiahao Ma", "1"), ("Qiang Zhang", "2"), ("Miaomiao Liu", "1"),
            ("David Ahmedt-Aristizabal", "3"), ("Chuong Nguyen", "3")]
-AFFIL = [("1", "Australian National University"), ("2", "University of Science and Technology of China"), ("3", "CSIRO’s Data61")]
+AFFIL = [("1", "Australian National University"), ("2", "University of Science and Technology of China"), ("3", "CSIRO, Australia")]
 def sup_line(d, cy, parts, font, sup, fill):
     total = sum(d.textlength(t, font=sup if s else font) for t, s in parts); x = W / 2 - total / 2
     for t, s in parts:
