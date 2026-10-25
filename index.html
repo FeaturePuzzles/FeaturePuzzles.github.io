@@ -57,8 +57,14 @@
 <section class="prose" id="video">
   <div class="wrap">
     <h2 class="section-title">Video</h2>
+    <div class="promo-bar">
+      <div class="seg" id="promo-len" role="group" aria-label="Video length">
+        <button class="on" data-src="media/promo/feature_puzzles_promo.mp4?v=3" title="Full video with narration">Full &middot; 5:56</button>
+        <button data-src="media/promo/teaser_90s.mp4?v=1" title="Sped-up cut, no audio">Short &middot; 1:30</button>
+      </div>
+    </div>
     <div class="promo">
-      <video controls playsinline preload="metadata" poster="media/promo/poster.jpg?v=3">
+      <video id="promo-video" controls playsinline preload="metadata" poster="media/promo/poster.jpg?v=4">
         <source src="media/promo/feature_puzzles_promo.mp4?v=3" type="video/mp4">
       </video>
     </div>
@@ -309,6 +315,17 @@
 <script>
   document.querySelectorAll('.fig-open').forEach(b =>
     b.addEventListener('click', () => openLightbox(b.dataset.src, b.dataset.cap)));
+
+  // full / short promo: swap the source, keep playing if it was
+  const promo = document.getElementById('promo-video');
+  document.querySelectorAll('#promo-len button').forEach(b => b.addEventListener('click', () => {
+    if (b.classList.contains('on')) return;
+    document.querySelectorAll('#promo-len button').forEach(x => x.classList.toggle('on', x === b));
+    const wasPlaying = !promo.paused;
+    promo.querySelector('source').src = b.dataset.src;
+    promo.load();
+    if (wasPlaying) promo.play();
+  }));
 </script>
 </body>
 </html>
