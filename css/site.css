@@ -89,6 +89,11 @@ a { color: var(--accent); }
 .btn[data-placeholder] { color: var(--fg-faint); }
 .btn[data-placeholder]:hover { color: var(--fg-dim); border-color: var(--line); background: var(--bg-card); }
 .btn[data-placeholder]::after { content: " ·  soon"; font-size: 11px; opacity: .7; }
+.btn .soon {
+  margin-left: 6px; padding: 2px 7px; border-radius: 999px; vertical-align: 1px;
+  font: 500 10.5px/1 var(--sans); letter-spacing: .02em;
+  color: var(--accent-hi); background: var(--accent-soft);
+}
 
 /* ── teaser ─────────────────────────────────────────────────────────────── */
 .teaser { margin: 54px 0 0; }
